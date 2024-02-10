@@ -14,7 +14,9 @@ import Restaurant from './component/Restaurant.jsx';
 import { Contact } from './component/Contact.jsx';
 import OurRoom from './component/OurRoom.jsx';
 import SignIn from './component/SignIn.jsx';
-
+import ModifyPackage from './admin/ModifyPackage.jsx';
+import ModifyCustomer from './admin/ModifyCustomer.jsx';
+import ModifyHotelService from './admin/ModifyHotelService.jsx';
 
 function App() {
   return (
@@ -38,6 +40,13 @@ function App() {
           <Route exact path='/contact' element={<Contact />}></Route>
           <Route exact path='/room' element={<OurRoom />}></Route>
           <Route exact path='/login' element={<SignIn />}></Route>
+
+
+          { /* Admin Page */}
+        <Route exact path='/admin/packages' element={<ModifyPackage />} />
+        <Route exact path='/admin/customers' element={<ModifyCustomer />} />
+        <Route exact path='/admin/hotelservices' element={<ModifyHotelService />} />
+
         </Routes>
         <BottamBar />
       </div>
