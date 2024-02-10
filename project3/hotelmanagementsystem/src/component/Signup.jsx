@@ -6,52 +6,55 @@ export default function Signup() {
        {/* <header>
         <Topbar/>
       </header> */}
-   <div className="back_re">
-   <div className="container">
-      <div className="row">
-         <div className="col-md-12">
-            <div className="title">
-                <h2>Sign Up</h2>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
-
-<div className="contact">
-   <div className="container">
-      <div className="row">
-         <div className="col-md">
-            <form id="request" className="main_form">
-               <div className="row">
-                  <div className="col-md-12 ">
-                     <input className="contactus" placeholder="Name" type="type" name="Name"/> 
-                  </div>
-                  <div className="col-md-12">
-                     <input className="contactus" placeholder="Email" type="type" name="Email"/> 
-                  </div>
-                  <div className="col-md-12">
-                     <input className="contactus" placeholder="Phone Number" type="type" name="Phone Number"/>                          
-                  </div>
-                  <div className="col-md-12">
-                     <textarea className="textarea" placeholder="Message" type="type" Message="Name">Message</textarea>
-                  </div>
-                  <div className="col-md-12">
-                     <button className="send_btn">Send</button>
-                  </div>
-               </div>
+    <form className="needs-validation" novalidate="">
+                <div className="row">
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <label for="reg-fn">First Name</label>
+                            <input className="form-control" type="text" required="" id="reg-fn"/>
+                            <div className="invalid-feedback">Please enter your first name!</div>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <label for="reg-ln">Last Name</label>
+                            <input className="form-control" type="text" required="" id="reg-ln"/>
+                            <div className="invalid-feedback">Please enter your last name!</div>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <label for="reg-email">E-mail Address</label>
+                            <input className="form-control" type="email" required="" id="reg-email"/>
+                            <div className="invalid-feedback">Please enter valid email address!</div>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <label for="reg-phone">Phone Number</label>
+                            <input className="form-control" type="text" required="" id="reg-phone"/>
+                            <div className="invalid-feedback">Please enter your phone number!</div>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <label for="reg-password">Password</label>
+                            <input className="form-control" type="password" required="" id="reg-password"/>
+                            <div className="invalid-feedback">Please enter password!</div>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <label for="reg-password-confirm">Confirm Password</label>
+                            <input className="form-control" type="password" required="" id="reg-password-confirm"/>
+                            <div className="invalid-feedback">Passwords do not match!</div>
+                        </div>
+                    </div>
+                </div>
+                <div className="text-right">
+                    <button className="btn btn-primary" type="submit">Sign Up</button>
+                </div>
             </form>
-         </div>
-         <div className="col-md">
-            <div className="map_main">
-               <div className="map-responsive">
-                  <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="400" frameBorder="0" style={{"border":0, "width": '100%'}} allowFullScreen=""></iframe>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
 {/* <footer>
         <BottamBar/>
       </footer> */}

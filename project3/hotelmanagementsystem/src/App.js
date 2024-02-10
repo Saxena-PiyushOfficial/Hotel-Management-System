@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import './css/style.css';
+
 import Topbar from './component/Topbar.jsx';
 import BottamBar from './component/BottamBar.jsx';
 import Home from './component/Home.jsx';
@@ -12,7 +13,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Restaurant from './component/Restaurant.jsx';
 import { Contact } from './component/Contact.jsx';
 import OurRoom from './component/OurRoom.jsx';
-import Login from './component/SignIn.jsx';
 import SignIn from './component/SignIn.jsx';
 
 
