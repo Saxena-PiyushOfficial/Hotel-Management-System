@@ -1,5 +1,5 @@
 import React from 'react'
-
+import gallery from '../image/gallery1.jpg';
 
 function Gallery() {
   return (
@@ -21,42 +21,42 @@ function Gallery() {
             <div className="row">
                <div className="col-md-3 col-sm-6">
                   <div className="gallery_img">
-                     <figure><img src="images/gallery1.jpg" alt="#"/></figure>
+                     <figure><img src={gallery} alt="#"/></figure>
                   </div>
                </div>
                <div className="col-md-3 col-sm-6">
                   <div className="gallery_img">
-                     <figure><img src="images/gallery2.jpg" alt="#"/></figure>
+                     <figure><img src={gallery} alt="#"/></figure>
                   </div>
                </div>
                <div className="col-md-3 col-sm-6">
                   <div className="gallery_img">
-                     <figure><img src="images/gallery3.jpg" alt="#"/></figure>
+                     <figure><img src={gallery} alt="#"/></figure>
                   </div>
                </div>
                <div className="col-md-3 col-sm-6">
                   <div className="gallery_img">
-                     <figure><img src="images/gallery4.jpg" alt="#"/></figure>
+                     <figure><img src={gallery} alt="#"/></figure>
                   </div>
                </div>
                <div className="col-md-3 col-sm-6">
                   <div className="gallery_img">
-                     <figure><img src="images/gallery5.jpg" alt="#"/></figure>
+                     <figure><img src={gallery} alt="#"/></figure>
                   </div>
                </div>
                <div className="col-md-3 col-sm-6">
                   <div className="gallery_img">
-                     <figure><img src="images/gallery6.jpg" alt="#"/></figure>
+                     <figure><img src={gallery} alt="#"/></figure>
                   </div>
                </div>
                <div className="col-md-3 col-sm-6">
                   <div className="gallery_img">
-                     <figure><img src="images/gallery7.jpg" alt="#"/></figure>
+                     <figure><img src={gallery} alt="#"/></figure>
                   </div>
                </div>
                <div className="col-md-3 col-sm-6">
                   <div className="gallery_img">
-                     <figure><img src="images/gallery8.jpg" alt="#"/></figure>
+                     <figure><img src={gallery} alt="#"/></figure>
                   </div>
                </div>
             </div>

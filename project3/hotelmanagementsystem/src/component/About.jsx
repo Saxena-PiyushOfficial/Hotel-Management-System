@@ -1,5 +1,5 @@
 import React from 'react'
-
+import about from '../image/about.png';
 
 function About() {
   return (
@@ -28,7 +28,7 @@ function About() {
             </div>
             <div className="col-md-7">
                <div className="about_img">
-                  <figure><img src="images/about.png" alt="#"/></figure>
+                  <figure><img src={about} alt="#"/></figure>
                </div>
             </div>
          </div>

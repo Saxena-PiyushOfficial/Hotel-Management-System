@@ -1,5 +1,5 @@
 import React from 'react'
-
+import blog1 from '../image/blog1.jpg';
 
 export default function Blog() {
   return (
@@ -30,7 +30,7 @@ export default function Blog() {
                <div className="col-md-4">
                   <div className="blog_box">
                      <div className="blog_img">
-                        <figure><img src="images/blog1.jpg" alt="#"/></figure>
+                        <figure><img src={blog1} alt="#"/></figure>
                      </div>
                      <div className="blog_room">
                         <h3>Bed Room</h3>
@@ -42,7 +42,7 @@ export default function Blog() {
                <div className="col-md-4">
                   <div className="blog_box">
                      <div className="blog_img">
-                        <figure><img src="images/blog2.jpg" alt="#"/></figure>
+                        <figure><img src={blog1} alt="#"/></figure>
                      </div>
                      <div className="blog_room">
                         <h3>Bed Room</h3>
@@ -54,7 +54,7 @@ export default function Blog() {
                <div className="col-md-4">
                   <div className="blog_box">
                      <div className="blog_img">
-                        <figure><img src="images/blog3.jpg" alt="#"/></figure>
+                        <figure><img src={blog1} alt="#"/></figure>
                      </div>
                      <div className="blog_room">
                         <h3>Bed Room</h3>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import logo from '../image/logo.png';
 
 export default function Topbar() {
    return (
@@ -11,7 +12,7 @@ export default function Topbar() {
                     <div className="full">
                        <div className="center-desk">
                           <div className="logo">
-                             <Link to="index.html"><img src="images/logo.png" alt="#" /></Link>
+                             <Link to="index.html"><img src={logo} alt="#" /></Link>
                           </div>
                        </div>
                     </div>
@@ -38,14 +39,15 @@ export default function Topbar() {
                              <li className="nav-item">
                                 <Link className="nav-link" to="/blog">Blog</Link>
                              </li>
-                             <li className="nav-item">
-                                <Link className="nav-link" to="/login">Signin/Signup</Link>
-                             </li>
+                            
                              <li className="nav-item">
                                 <Link className="nav-link" to="/restaurent">Restaurant</Link>
                              </li>
                              <li className="nav-item">
                                 <Link className="nav-link" to="/contact">Contact Us</Link>
+                             </li>
+                             <li className="nav-item">
+                                <Link className="nav-link" to="/login">Signin/Signup</Link>
                              </li>
                           </ul>
                        </div>

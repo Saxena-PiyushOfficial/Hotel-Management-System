@@ -42,21 +42,6 @@ export default function BottamBar() {
                      </div>
                   </div>
                </div>
-               <div className="copyright">
-                  <div className="container">
-                     <div className="row">
-                        <div className="col-md-10 offset-md-1">
-                           
-                           <p>
-                           © 2019 All Rights Reserved. Design by <a href="https://html.design/"> Free Html Templates</a>
-                           
-                           Distributed by <Link to="https://themewagon.com/" target="_blank">ThemeWagon</Link>
-                           </p>
-   
-                        </div>
-                     </div>
-                  </div>
-               </div>
             </div>
       </div>
      )

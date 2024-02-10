@@ -1,4 +1,5 @@
 import React from 'react'
+import room from '../image/room1.jpg';
 
 export default function OurRoom() {
   return (
@@ -28,7 +29,7 @@ export default function OurRoom() {
                <div className="col-md-4 col-sm-6">
                   <div id="serv_hover"  className="room">
                      <div className="room_img">
-                        <figure><img src="images/room1.jpg" alt="#"/></figure>
+                        <figure><img src={room} alt="#"/></figure>
                      </div>
                      <div className="bed_room">
                         <h3>Bed Room</h3>
@@ -39,7 +40,7 @@ export default function OurRoom() {
                <div className="col-md-4 col-sm-6">
                   <div id="serv_hover"  className="room">
                      <div className="room_img">
-                        <figure><img src="images/room2.jpg" alt="#"/></figure>
+                        <figure><img src={room} alt="#"/></figure>
                      </div>
                      <div className="bed_room">
                         <h3>Bed Room</h3>
@@ -50,7 +51,7 @@ export default function OurRoom() {
                <div className="col-md-4 col-sm-6">
                   <div id="serv_hover"  className="room">
                      <div className="room_img">
-                        <figure><img src="images/room3.jpg" alt="#"/></figure>
+                        <figure><img src={room} alt="#"/></figure>
                      </div>
                      <div className="bed_room">
                         <h3>Bed Room</h3>
@@ -61,7 +62,7 @@ export default function OurRoom() {
                <div className="col-md-4 col-sm-6">
                   <div id="serv_hover"  className="room">
                      <div className="room_img">
-                        <figure><img src="images/room4.jpg" alt="#"/></figure>
+                        <figure><img src={room} alt="#"/></figure>
                      </div>
                      <div className="bed_room">
                         <h3>Bed Room</h3>
@@ -72,7 +73,7 @@ export default function OurRoom() {
                <div className="col-md-4 col-sm-6">
                   <div id="serv_hover"  className="room">
                      <div className="room_img">
-                        <figure><img src="images/room5.jpg" alt="#"/></figure>
+                        <figure><img src={room} alt="#"/></figure>
                      </div>
                      <div className="bed_room">
                         <h3>Bed Room</h3>
@@ -83,7 +84,7 @@ export default function OurRoom() {
                <div className="col-md-4 col-sm-6">
                   <div id="serv_hover"  className="room">
                      <div className="room_img">
-                        <figure><img src="images/room6.jpg" alt="#"/></figure>
+                        <figure><img src={room} alt="#"/></figure>
                      </div>
                      <div className="bed_room">
                         <h3>Bed Room</h3>
