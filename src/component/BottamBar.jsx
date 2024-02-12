@@ -18,13 +18,13 @@ export default function BottamBar() {
                      <div className="col-md-4">
                         <h3>Menu Link</h3>
                         <ul className="link_menu">
-                           <li className="active"><a href="#">Home</a></li>
-                           <li><Link to="about.html"> about</Link></li>
-                           <li><Link to="room.html">Our Room</Link></li>
-                            <li><Link to="gallery.html">Gallery</Link></li>
-                           <li><Link to="blog.html">Blog</Link></li> 
-                           <li><Link to="login.html">Signin/Signup</Link></li>
-                           <li><Link to="contact.html">Contact Us</Link></li>
+                           <li className="active"><Link to="/home">Home</Link></li>
+                           <li><Link to="/about"> about</Link></li>
+                           <li><Link to="/room">Our Room</Link></li>
+                            <li><Link to="/gallery">Gallery</Link></li>
+                           <li><Link to="/blog">Blog</Link></li> 
+                           <li><Link to="/login">Signin/Signup</Link></li>
+                           <li><Link to="/contact">Contact Us</Link></li>
                         </ul>
                      </div>
                      <div className="col-md-4">

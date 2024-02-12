@@ -7,6 +7,25 @@ import Gallery from "./Gallery";
 import Restaurant from "./Restaurant";
 import Topbar from "./Topbar";
 import BottamBar from "./BottamBar";
+import banner from './images/banner1.jpg'
+import banner3 from '../images/banner3.jpg'
+import date from '../images/date.png'
+import about from '../images/about.png'
+import room1 from '../images/room1.jpg'
+import room2 from '../images/room2.jpg'
+import room3 from '../images/room3.jpg'
+import room4 from '../images/room4.jpg'
+import room5 from '../images/room5.jpg'
+import room6 from '../images/room6.jpg'
+import gallery1 from '../images/gallery1.jpg'
+import gallery2 from '../images/gallery2.jpg'
+import gallery3 from '../images/gallery3.jpg'
+import gallery4 from '../images/gallery4.jpg'
+import gallery5 from '../images/gallery5.jpg'
+import gallery6 from '../images/gallery6.jpg'
+import gallery7 from '../images/gallery7.jpg'
+import gallery8 from '../images/gallery8.jpg'
+
 
 function Home() {
   return (
@@ -17,29 +36,25 @@ function Home() {
       <section className="banner_main"></section>
       <div id="myCarousel" className="carousel slide banner" data-ride="carousel">
         <ol className="carousel-indicators">
-          {/* <li data-target="#myCarousel" data-slide-to="0" className=""></li>
+          <li data-target="#myCarousel" data-slide-to="0" className=""></li>
                <li data-target="#myCarousel" data-slide-to="1" className=""></li>
-               <li data-target="#myCarousel" data-slide-to="2" className="active"></li> */}
+               <li data-target="#myCarousel" data-slide-to="2" className="active"></li>
         </ol>
         <div className="carousel-inner">
           <div className="carousel-item">
-            <img
-              className="first-slide"
-              src="images/banner1.jpg"
-              alt="First slide"
-            />
+               <img className="first-slide" src={banner} alt="First slide"/>
             <div className="container"></div>
           </div>
           <div className="carousel-item">
             <img
               className="second-slide"
-              src="images/banner2.jpg"
+              src={banner}
               alt="Second slide"
             />
           </div>
-          {/* <div className="carousel-item active">
-                  <img className="third-slide" src="images/banner3.jpg" alt="Third slide"/>
-               </div>  */}
+          <div className="carousel-item active">
+                  <img className="third-slide" src={banner3} alt="Third slide"/>
+               </div> 
         </div>
         <a
           className="carousel-control-prev"
@@ -71,7 +86,7 @@ function Home() {
                 <div className="row">
                   <div className="col-md-12">
                     <span>Arrival</span>
-                    <img className="date_cua" src="images/date.png" />
+                    <img className="date_cua" src={date} />
                     <input
                       className="online_book"
                       placeholder="dd/mm/yyyy"
@@ -81,7 +96,7 @@ function Home() {
                   </div>
                   <div className="col-md-12">
                     <span>Departure</span>
-                    <img className="date_cua" src="images/date.png" />
+                    <img className="date_cua" src={date} />
                     <input
                       className="online_book"
                       placeholder="dd/mm/yyyy"
@@ -91,7 +106,7 @@ function Home() {
                   </div>
 
                   <div className="col-md-12">
-                    <button className="book_btn">Book Now</button>
+                    <button className="book_btn"><Link to="/login">Book Now</Link></button>
                   </div>
                 </div>
               </form>
@@ -100,26 +115,6 @@ function Home() {
         </div>
       </div>
 
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
       <div className="about">
         <div className="container-fluid">
           <div className="row">
@@ -135,13 +130,13 @@ function Home() {
                   get your own, or read on for the authoritative history of
                   lorem ipsum.{" "}
                 </p>
-                <a className="read_more"> Read More</a>
+                <a className="read_more"> <Link className="nav-link" to="/about">Read More</Link></a>
               </div>
             </div>
             <div className="col-md-7">
               <div className="about_img">
                 <figure>
-                  <img src="../image/about.png" alt="#" />
+                  <img src={about} alt="#" />
                 </figure>
               </div>
             </div>
@@ -164,7 +159,7 @@ function Home() {
               <div id="serv_hover" className="room">
                 <div className="room_img">
                   <figure>
-                    <img src="images/room1.jpg" alt="#" />
+                    <img src={room1} alt="#" />
                   </figure>
                 </div>
                 <div className="bed_room">
@@ -180,7 +175,7 @@ function Home() {
               <div id="serv_hover" className="room">
                 <div className="room_img">
                   <figure>
-                    <img src="images/room2.jpg" alt="#" />
+                    <img src={room2} alt="#" />
                   </figure>
                 </div>
                 <div className="bed_room">
@@ -196,7 +191,7 @@ function Home() {
               <div id="serv_hover" className="room">
                 <div className="room_img">
                   <figure>
-                    <img src="images/room3.jpg" alt="#" />
+                    <img src={room3} alt="#" />
                   </figure>
                 </div>
                 <div className="bed_room">
@@ -212,7 +207,7 @@ function Home() {
               <div id="serv_hover" className="room">
                 <div className="room_img">
                   <figure>
-                    <img src="images/room4.jpg" alt="#" />
+                    <img src={room4} alt="#" />
                   </figure>
                 </div>
                 <div className="bed_room">
@@ -228,7 +223,7 @@ function Home() {
               <div id="serv_hover" className="room">
                 <div className="room_img">
                   <figure>
-                    <img src="images/room5.jpg" alt="#" />
+                    <img src={room5} alt="#" />
                   </figure>
                 </div>
                 <div className="bed_room">
@@ -244,7 +239,7 @@ function Home() {
               <div id="serv_hover" className="room">
                 <div className="room_img">
                   <figure>
-                    <img src="images/room6.jpg" alt="#" />
+                    <img src={room6} alt="#" />
                   </figure>
                 </div>
                 <div className="bed_room">
@@ -273,55 +268,55 @@ function Home() {
             <div className="row">
               <div className="col-md-3 col-sm-6">
                 <div className="gallery_img">
-                  <img src="../image/gallery1.jpg" alt="#" />
+                  <img src={gallery1} alt="#" />
                 </div>
               </div>
               <div className="col-md-3 col-sm-6">
                 <div className="gallery_img">
                   <figure>
-                    <img src="images/gallery2.jpg" alt="#" />
+                    <img src={gallery2} alt="#" />
                   </figure>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6">
                 <div className="gallery_img">
                   <figure>
-                    <img src="images/gallery3.jpg" alt="#" />
+                    <img src={gallery3} alt="#" />
                   </figure>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6">
                 <div className="gallery_img">
                   <figure>
-                    <img src="images/gallery4.jpg" alt="#" />
+                    <img src={gallery4} alt="#" />
                   </figure>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6">
                 <div className="gallery_img">
                   <figure>
-                    <img src="images/gallery5.jpg" alt="#" />
+                    <img src={gallery5} alt="#" />
                   </figure>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6">
                 <div className="gallery_img">
                   <figure>
-                    <img src="images/gallery6.jpg" alt="#" />
+                    <img src={gallery6} alt="#" />
                   </figure>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6">
                 <div className="gallery_img">
                   <figure>
-                    <img src="images/gallery7.jpg" alt="#" />
+                    <img src={gallery7} alt="#" />
                   </figure>
                 </div>
               </div>
               <div className="col-md-3 col-sm-6">
                 <div className="gallery_img">
                   <figure>
-                    <img src="images/gallery8.jpg" alt="#" />
+                    <img src={gallery8} alt="#" />
                   </figure>
                 </div>
               </div>
@@ -329,75 +324,179 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="Restaurant">
-        <div className="Restaurant">
-          <div className="container">
-            <div className="row">
+      
+      <div  className="container">
+         <div className="container">
+          <div className="gallery">
+          <div className="row">
               <div className="col-md-12">
                 <div className="titlepage">
-                  <h2>Restaurant</h2>
+                  <h2>Blog</h2>
                 </div>
               </div>
             </div>
+          </div>
             <div className="row">
-              <div className="col-md-3 col-sm-6">
-                <div className="Restaurant_img">
-                  <img src="../image/Restaurant1.jpg" alt="#" />
-                </div>
+               <div className="col-md-12">
+                  <div className="titlepage">
+             
+                     <p className="margin_0">Lorem Ipsum available, but the majority have suffered </p>
+                  </div>
+               </div>
+            </div>
+            <div className="row">
+               <div className="col-md-4">
+                  <div className="blog_box">
+                     <div className="blog_img">
+                        <figure><img src="images/blog1.jpg" alt="#"/></figure>
+                     </div>
+                     <div className="blog_room">
+                        <h3>Bed Room</h3>
+                        <span>The standard chunk </span>
+                        <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generatorsIf you are   </p>
+                     </div>
+                  </div>
+               </div>
+               <div className="col-md-4">
+                  <div className="blog_box">
+                     <div className="blog_img">
+                        <figure><img src="images/blog2.jpg" alt="#"/></figure>
+                     </div>
+                     <div className="blog_room">
+                        <h3>Bed Room</h3>
+                        <span>The standard chunk </span>
+                        <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generatorsIf you are   </p>
+                     </div>
+                  </div>
+               </div>
+               <div className="col-md-4">
+                  <div className="blog_box">
+                     <div className="blog_img">
+                        <figure><img src="images/blog3.jpg" alt="#"/></figure>
+                     </div>
+                     <div className="blog_room">
+                        <h3>Bed Room</h3>
+                        <span>The standard chunk </span>
+                        <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generatorsIf you are   </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      
+      <div className="restaurant">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="titlepage">
+                <h2>Restaurant</h2>
+                <p>Lorem Ipsum available, but the majority have suffered </p>
               </div>
-              <div className="col-md-3 col-sm-6">
-                <div className="Restaurant_img">
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-4 col-sm-6">
+              <div id="serv_hover" className="room">
+                <div className="room_img">
                   <figure>
-                    <img src="image/Restaurant.jpg" alt="#" />
+                    <img src={room1} alt="#" />
                   </figure>
                 </div>
-              </div>
-              <div className="col-md-3 col-sm-6">
-                <div className="Restaurant_img">
-                  <figure>
-                    <img src="image/Restaurant.jpg" alt="#" />
-                  </figure>
+                <div className="bed_room">
+                  <h3>Bed Room</h3>
+                  <p>
+                    If you are going to use a passage of Lorem Ipsum, you need
+                    to be sure there{" "}
+                  </p>
                 </div>
               </div>
-              <div className="col-md-3 col-sm-6">
-                <div className="Restaurant_img">
+            </div>
+            <div className="col-md-4 col-sm-6">
+              <div id="serv_hover" className="room">
+                <div className="room_img">
                   <figure>
-                    <img src="image/Restaurant.jpg" alt="#" />
+                    <img src={room2} alt="#" />
                   </figure>
                 </div>
-              </div>
-              <div className="col-md-3 col-sm-6">
-                <div className="Restaurant_img">
-                  <figure>
-                    <img src="web/image/Restaurant.jpg" alt="#" />
-                  </figure>
+                <div className="bed_room">
+                  <h3>Bed Room</h3>
+                  <p>
+                    If you are going to use a passage of Lorem Ipsum, you need
+                    to be sure there{" "}
+                  </p>
                 </div>
               </div>
-              <div className="col-md-3 col-sm-6">
-                <div className="Restaurant_img">
+            </div>
+            <div className="col-md-4 col-sm-6">
+              <div id="serv_hover" className="room">
+                <div className="room_img">
                   <figure>
-                    <img src="image/Restaurant.jpg" alt="#" />
+                    <img src={room3} alt="#" />
                   </figure>
                 </div>
-              </div>
-              <div className="col-md-3 col-sm-6">
-                <div className="Restaurant_img">
-                  <figure>
-                    <img src="image/Restaurant.jpg" alt="#" />
-                  </figure>
+                <div className="bed_room">
+                  <h3>Bed Room</h3>
+                  <p>
+                    If you are going to use a passage of Lorem Ipsum, you need
+                    to be sure there{" "}
+                  </p>
                 </div>
               </div>
-              <div className="col-md-3 col-sm-6">
-                <div className="Restaurant_img">
+            </div>
+            <div className="col-md-4 col-sm-6">
+              <div id="serv_hover" className="room">
+                <div className="room_img">
                   <figure>
-                    <img src="image/Restaurant.jpg" alt="#" />
+                    <img src={room4} alt="#" />
                   </figure>
+                </div>
+                <div className="bed_room">
+                  <h3>Bed Room</h3>
+                  <p>
+                    If you are going to use a passage of Lorem Ipsum, you need
+                    to be sure there{" "}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4 col-sm-6">
+              <div id="serv_hover" className="room">
+                <div className="room_img">
+                  <figure>
+                    <img src={room5} alt="#" />
+                  </figure>
+                </div>
+                <div className="bed_room">
+                  <h3>Bed Room</h3>
+                  <p>
+                    If you are going to use a passage of Lorem Ipsum, you need
+                    to be sure there{" "}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4 col-sm-6">
+              <div id="serv_hover" className="room">
+                <div className="room_img">
+                  <figure>
+                    <img src={room6} alt="#" />
+                  </figure>
+                </div>
+                <div className="bed_room">
+                  <h3>Bed Room</h3>
+                  <p>
+                    If you are going to use a passage of Lorem Ipsum, you need
+                    to be sure there{" "}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
 
       <div className="contact">
         <div className="container">
