@@ -43,11 +43,7 @@ public class BookingController {
 		return new ResponseEntity<>(bookings, HttpStatus.OK);
 	}
 
-	@GetMapping("/bookingPerson/{bookingPersonId}")
-	public ResponseEntity<?> getBookingByBookingPerson(@PathVariable Long bookingPersonId) {
-		Optional<BookingDTO> booking = bookingService.getBookingByBookingPerson(bookingPersonId);
-		return new ResponseEntity<>(booking, HttpStatus.OK);
-	}
+
 
 	@DeleteMapping("/{bookingId}")
 	public ResponseEntity<Void> deleteHotel(@PathVariable Long hotelId) {

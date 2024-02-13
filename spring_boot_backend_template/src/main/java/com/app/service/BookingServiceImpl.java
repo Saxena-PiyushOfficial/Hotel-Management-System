@@ -45,11 +45,7 @@ public class BookingServiceImpl implements BookingService {
 		return oldBooking.map(booking->modelMapper.map(booking, BookingDTO.class));
 	}
 
-	@Override
-	public Optional<BookingDTO> getBookingByBookingPerson(Long bookingPersonID) {
-		Optional<Booking> oldBooking=bookingDao.findByBookingPerson(bookingPersonID);
-		return oldBooking.map(booking->modelMapper.map(booking, BookingDTO.class));
-	}
+	
 
 	@Override
 	public List<BookingDTO> getAllBookings() {
