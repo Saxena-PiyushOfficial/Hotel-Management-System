@@ -21,7 +21,7 @@ public class BookingDTO {
 	private LocalDate checkInDate;
 	private LocalDate checkOutDate;
 
-	private boolean status;
+	private String status;
 	
 	private Payment payment;
 	 
