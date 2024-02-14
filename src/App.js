@@ -14,7 +14,8 @@ import { Contact } from './component/Contact.jsx';
 import OurRoom from './component/OurRoom.jsx';
 import Login from './component/SignIn.jsx';
 import SignIn from './component/SignIn.jsx';
-
+import Signup from './component/Signup.jsx'
+// import AdminHome from './component/Admin/AdminHome.js'
 
 
 function App() {
@@ -32,8 +33,10 @@ function App() {
           <Route exact path='/contact' element={<Contact />}></Route>
           <Route exact path='/room' element={<OurRoom />}></Route>
           <Route exact path='/login' element={<SignIn />}></Route>
-          
+          <Route exact path='/signup' element={<Signup />}></Route>
+          {/* <Route exact path='/admin' element={<AdminHome/>}></Route> */}
         </Routes>
+        {/* <AdminHome/> */}
         <BottamBar />
       </div>
     </Router>

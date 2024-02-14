@@ -1,13 +1,8 @@
-import React,{useState} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import loginimg from "../images/login2.jpg";
+import loginimg from '../images/login2.jpg'
 
-export default function SignIn() {
-    const [selectedOption, setSelectedOption] = useState('option1');
-
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
+export default function OwnerLogin() {
   return (
     <div>
       <div className="back_re">
@@ -28,40 +23,6 @@ export default function SignIn() {
             <div className="card">
               <div className="card-body">
                 <h1 className="h4 mb-1">Sign in</h1>
-                <div>
-                  <label>
-                    <input
-                      type="radio"
-                      value="guest"
-                      className="mx-2"
-                      checked={selectedOption === "guest"}
-                      onChange={handleOptionChange}
-                    />
-                    Guest
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      value="staff"
-                      className="mx-2"
-                      checked={selectedOption === "staff"}
-                      onChange={handleOptionChange}
-                    />
-                    Staff
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      value="owner"
-                      className="mx-2"
-                      checked={selectedOption === "owner"}
-                      onChange={handleOptionChange}
-                    />
-                    Owner
-                  </label>
-                </div>
                 {/* <div className="d-sm-flex align-items-center py-3">
                         <h3 className="h6 font-weight-semibold opacity-70 mb-3 mb-sm-2 mr-sm-3">With social account:</h3>
                         <div>
@@ -76,7 +37,7 @@ export default function SignIn() {
                             </a>
                         </div>
                     </div> */}
-                <br />
+                    <br/>
                 <hr />
                 {/* <h3 className="h6 font-weight-semibold opacity-70 pt-4 pb-2">Or using form below</h3> */}
                 <form className="needs-validation" novalidate="">
@@ -110,7 +71,7 @@ export default function SignIn() {
                       Please enter valid email address!
                     </div>
                   </div>
-                  <br />
+                  <br/>
                   <div className="input-group form-group">
                     <div className="input-group-prepend">
                       <span className="input-group-text">
@@ -148,7 +109,7 @@ export default function SignIn() {
                       Please enter valid password!
                     </div>
                   </div>
-                  <br />
+                  <br/>
                   <div></div>
                   <div className="d-flex flex-wrap justify-content-between">
                     <div className="custom-control custom-checkbox">
@@ -170,19 +131,13 @@ export default function SignIn() {
                     </Link>
                   </div>
                   <hr className="mt-4" />
+                  <div>
                   
+                  </div>
                   <div className="text-right pt-4">
                     <button className="btn btn-primary" type="submit">
                       Sign In
-                    </button><br/>
-                    <br/>
-                    <label for="signup" className="mx-2">Dont have an account?</label>
-                    <Link
-                      className="nav-link-inline font-size-sm"
-                      to="/signup"
-                    >
-                       Sign Up here 
-                    </Link>
+                    </button>
                   </div>
                 </form>
               </div>
@@ -191,9 +146,7 @@ export default function SignIn() {
           <div className="col-md-6 pt-sm-3">
             <div className="card">
               <div className="card-body">
-                <figure>
-                  <img src={loginimg} alt="#" />
-                </figure>
+                <figure><img src={loginimg} alt="#"/></figure>
               </div>
             </div>
           </div>

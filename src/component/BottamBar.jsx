@@ -7,7 +7,7 @@ export default function BottamBar() {
          <div className="footer">
                <div className="container">
                   <div className="row">
-                     <div className=" col-md-4">
+                     <div className=" col-md-6">
                         <h3>Contact US</h3>
                         <ul className="conta">
                            <li><i className="fa fa-map-marker" aria-hidden="true"></i> Address</li>
@@ -15,7 +15,7 @@ export default function BottamBar() {
                            <li> <i className="fa fa-envelope" aria-hidden="true"></i><a href="#"> demo@gmail.com</a></li>
                         </ul>
                      </div>
-                     <div className="col-md-4">
+                     <div className="col-md-6">
                         <h3>Menu Link</h3>
                         <ul className="link_menu">
                            <li className="active"><Link to="/home">Home</Link></li>
@@ -27,7 +27,7 @@ export default function BottamBar() {
                            <li><Link to="/contact">Contact Us</Link></li>
                         </ul>
                      </div>
-                     <div className="col-md-4">
+                     {/* <div className="col-md-4">
                         <h3>News letter</h3>
                         <form className="bottom_form">
                            <input className="enter" placeholder="Enter your email" type="text" name="Enter your email"/>
@@ -39,7 +39,7 @@ export default function BottamBar() {
                            <li><Link to="#"><i className="fa fa-linkedin" aria-hidden="true"></i></Link></li>
                            <li><Link to="#"><i className="fa fa-youtube-play" aria-hidden="true"></i></Link></li>
                         </ul>
-                     </div>
+                     </div> */}
                   </div>
                </div>
                <div className="copyright">
