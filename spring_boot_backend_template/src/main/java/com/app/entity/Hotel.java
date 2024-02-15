@@ -70,6 +70,27 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Guest> guests = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Manager> managers = new ArrayList<>();
+
+    public void addManager(Manager manager) {
+        managers.add(manager);
+        manager.setHotel(this); // Set the bidirectional relationship
+
+        if (manager.getHotel() == null || !manager.getHotel().equals(this)) {
+            manager.setHotel(this);
+        }
+    }
+
+    public void removeManager(Manager manager) {
+        managers.remove(manager);
+        manager.setHotel(null); // Remove the bidirectional relationship
+
+        if (manager.getHotel() != null && manager.getHotel().equals(this)) {
+            manager.setHotel(null);
+        }
+    }
     
 	public void addGuest(Guest guest) {
 	    guests.add(guest);
