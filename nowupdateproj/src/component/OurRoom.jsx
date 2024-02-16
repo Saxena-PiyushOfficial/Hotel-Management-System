@@ -145,7 +145,7 @@ export default function OurRoom() {
                       </div>
                     </div>
                   </div>
-                  <button><Link to="/book">Book Now</Link></button>
+                  <button><Link to="/book1">Book Now</Link></button>
                 </div>
               </div>
             </div>
@@ -252,7 +252,7 @@ export default function OurRoom() {
                       </div>
                     </div>
                   </div>
-                  <button><Link to="/book">Book Now</Link></button>
+                  <button><Link to="/book2">Book Now</Link></button>
                 </div>
               </div>
             </div>

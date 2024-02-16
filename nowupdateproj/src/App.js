@@ -16,6 +16,8 @@ import Login from './component/SignIn.jsx';
 import SignIn from './component/SignIn.jsx';
 import Signup from './component/Signup.jsx';
 import Book from './component/Book.jsx';
+import Book1 from './component/Book1.jsx';
+import Book2 from './component/Book2.jsx';
 // import AdminHome from './component/Admin/AdminHome.js'
 
 
@@ -36,6 +38,8 @@ function App() {
           <Route exact path='/login' element={<SignIn />}></Route>
           <Route exact path='/signup' element={<Signup />}></Route>
           <Route exact path='/book' element={<Book />}></Route>
+          <Route exact path='/book1' element={<Book1 />}></Route>
+          <Route exact path='/book2' element={<Book2 />}></Route>
           {/* <Route exact path='/admin' element={<AdminHome/>}></Route> */}
         </Routes>
         {/* <AdminHome/> */}

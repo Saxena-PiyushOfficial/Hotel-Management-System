@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import banner1 from "../images/banner.jpg";
-import banner2 from "../images/Banner3.jpg"
+import banner2 from "../images/banner2.jpg"
 import banner3 from "../images/Banner3.jpg";
 import about from "../images/about.png";
 import room1 from "../images/room1.jpg";
@@ -84,7 +84,7 @@ function Home() {
         <div className="container">
           <div className="row"></div>
 
-          <div className="col-md-5">
+          <div className="col-md-7">
             <div className="book_room">
               <h1>𖤘 GrandIN Hotel 𖤘</h1>
               <form className="book_now">

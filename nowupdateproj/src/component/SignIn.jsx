@@ -151,12 +151,12 @@ export default function SignIn() {
                   <br />
                   <div></div>
                   <div className="d-flex flex-wrap justify-content-between">
-                    <div className="custom-control custom-checkbox">
+                    {/* <div className="custom-control custom-checkbox">
                       <input className="custom-control-input" type="checkbox" checked="" id="remember_me"/>
                       <label className="custom-control-label" for="remember_me">
                         Remember me
                       </label>
-                    </div>
+                    </div> */}
                     <Link
                       className="nav-link-inline font-size-sm"
                       to="account-password-recovery.html"
