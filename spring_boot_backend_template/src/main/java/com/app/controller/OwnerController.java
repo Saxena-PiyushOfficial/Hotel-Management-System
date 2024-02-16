@@ -44,4 +44,7 @@ public class OwnerController {
         ownerService.deleteOwner(ownerId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    
+  
+    
 }

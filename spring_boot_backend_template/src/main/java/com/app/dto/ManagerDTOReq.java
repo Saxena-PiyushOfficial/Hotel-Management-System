@@ -2,7 +2,7 @@ package com.app.dto;
 
 import java.time.LocalDate;
 
-import com.app.entity.Manager;
+import com.app.entity.Hotel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.*;
@@ -12,12 +12,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class StaffDTO {
-	private Long staffId;
-
+public class ManagerDTOReq {
+	
+	private Long hotelId;
 	private String firstName;
 	private String lastName;
-	private String position;
 	private double salary;
 	private LocalDate dob;
 	private String phone;
@@ -25,8 +24,6 @@ public class StaffDTO {
 	private String password;
 	private LocalDate hireDate;
 	
-	private Long managerId;
 	@JsonIgnore
-	private Manager manager;
-
+	private Hotel hotel;
 }

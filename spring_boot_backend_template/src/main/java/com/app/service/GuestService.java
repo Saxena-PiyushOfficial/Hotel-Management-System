@@ -3,6 +3,7 @@ package com.app.service;
 import java.util.List;
 
 import com.app.dto.GuestDTO;
+import com.app.dto.GuestDTOAuth;
 
 public interface GuestService {
 	GuestDTO createGuest(GuestDTO guestDTO);
@@ -11,5 +12,6 @@ public interface GuestService {
 
 	List<GuestDTO> getAllGuests();
 
-	void deleteGuest(Long guestId);
+	Long deleteGuest(Long guestId);
+	GuestDTO authenticateGuest(GuestDTOAuth authDTO);
 }

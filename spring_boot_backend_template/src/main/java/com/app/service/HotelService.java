@@ -44,7 +44,7 @@ public class HotelService {
     }
 
     public List<HotelDTO> getHotelsByOwner(Long ownerId) {
-        List<Hotel> hotels = hotelDAO.findByOwner(ownerId);
+        List<Hotel> hotels = hotelDAO.findByOwnerOwnerID(ownerId);
         return hotels.stream()
                 .map(hotel -> modelMapper.map(hotel, HotelDTO.class))
                 .collect(Collectors.toList());

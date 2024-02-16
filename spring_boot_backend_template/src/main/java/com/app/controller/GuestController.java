@@ -40,8 +40,8 @@ public class GuestController {
     }
 
     @DeleteMapping("/{guestId}")
-    public ResponseEntity<Void> deleteGuest(@PathVariable Long guestId) {
-        guestService.deleteGuest(guestId);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> deleteGuest(@PathVariable Long guestId) {
+        Long deletedGuestId = guestService.deleteGuest(guestId);
+        return ResponseEntity.ok("Guest with ID "+ deletedGuestId +" is been deleted successfully!");
     }
 }
