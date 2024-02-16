@@ -2,8 +2,7 @@ package com.app.dto;
 
 import java.time.LocalDate;
 
-import com.app.entity.Booking;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import lombok.*;
 

@@ -50,9 +50,6 @@ public class Hotel {
     private String checkOutTime;
     private double revenue;
 
-    @JsonIgnore
-    @OneToMany( mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Staff> staffs = new ArrayList<>();
     
     @JsonIgnore
     @OneToMany( mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -126,22 +123,7 @@ public class Hotel {
 	        service.setHotel(null);
 	    }
 	}
-	public void addStaff(Staff staff) {
-	    staffs.add(staff);
-	    staff.setHotel(this); // set the bidirectional relationship
 
-	    if (staff.getHotel() == null || !staff.getHotel().equals(this)) {
-	        staff.setHotel(this);
-	    }
-	}
-	public void removeStaff(Staff staff) {
-	    staffs.remove(staff);
-	    staff.setHotel(null); // remove the bidirectional relationship
-
-	    if (staff.getHotel() != null && staff.getHotel().equals(this)) {
-	        staff.setHotel(null);
-	    }
-	}
 	public void addRoom(Room room) {
         rooms.add(room);
         room.setHotel(this); 

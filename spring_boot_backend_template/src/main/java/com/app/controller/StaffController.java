@@ -47,10 +47,10 @@ public class StaffController {
     }
 
     @DeleteMapping("/{staffId}")
-    public ResponseEntity<Void> deleteStaff(@PathVariable Long staffId) {
-        staffService.deleteStaff(staffId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<String> deleteStaff(@PathVariable Long staffId) {
+        Long deletedStaffID=staffService.deleteStaff(staffId);
+        return new ResponseEntity<>("Staff with ID " + deletedStaffID + " has been deleted successfully.",HttpStatus.OK);
     }
-
+    
     
 }

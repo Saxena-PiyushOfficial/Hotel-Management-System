@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.*;
 
@@ -53,11 +52,11 @@ public class Guest {
 	@Column(name = "no_of_guest", length = 100)
 	private int noOfGuest;
 
-	@JsonIgnore
-	   @ManyToOne
-	    @JoinColumn(name = "hotelID")
-	    private Hotel hotel;
-	
-	
+	@ManyToOne
+	@JoinColumn(name = "hotelID", referencedColumnName = "hotelID")
+	private Hotel hotel;
+
+	@OneToOne(mappedBy = "guest", cascade = CascadeType.ALL)
+	private Booking booking;
 
 }

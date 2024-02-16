@@ -1,6 +1,7 @@
 package com.app.controller;
 
-import com.app.dto.RoomDTO;
+import com.app.dto.RoomDTOReq;
+import com.app.dto.RoomDTOResp;
 import com.app.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,30 +14,40 @@ import java.util.List;
 @RequestMapping("/rooms")
 public class RoomController {
 
-	@Autowired
-	private RoomService roomService;
+    private final RoomService roomService;
 
-	@PostMapping
-	public ResponseEntity<RoomDTO> createRoom(@RequestBody RoomDTO roomDTO) {
-		RoomDTO savedRoom = roomService.saveRoom(roomDTO);
-		return new ResponseEntity<>(savedRoom, HttpStatus.OK);
-	}
-	@GetMapping("/{roomId}")
-	public ResponseEntity<RoomDTO> getRoomById(@PathVariable Long roomId) {
-		return roomService.getRoomById(roomId).map(roomDTO -> new ResponseEntity<>(roomDTO, HttpStatus.OK))
-				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-	}
+    @Autowired
+    public RoomController(RoomService roomService) {
+        this.roomService = roomService;
+    }
 
-	@GetMapping
-	public ResponseEntity<List<RoomDTO>> getAllRooms() {
-		List<RoomDTO> rooms = roomService.getAllRooms();
-		return new ResponseEntity<>(rooms, HttpStatus.OK);
-	}
+    @PostMapping
+    public ResponseEntity<RoomDTOResp> createRoom(@RequestBody RoomDTOReq roomDTO) {
+        RoomDTOResp createdRoom = roomService.createRoom(roomDTO);
+        return new ResponseEntity<>(createdRoom, HttpStatus.CREATED);
+    }
 
-	@DeleteMapping("/{roomId}")
-	public ResponseEntity<Void> deleteRoom(@PathVariable Long roomId) {
-		roomService.deleteRoom(roomId);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}
+    @GetMapping("/{roomID}")
+    public ResponseEntity<RoomDTOReq> getRoomById(@PathVariable Long roomID) {
+        RoomDTOReq roomDTO = roomService.getRoomById(roomID);
+        return ResponseEntity.ok(roomDTO);
+    }
 
+    @GetMapping
+    public ResponseEntity<List<RoomDTOReq>> getAllRooms() {
+        List<RoomDTOReq> rooms = roomService.getAllRooms();
+        return ResponseEntity.ok(rooms);
+    }
+
+    @GetMapping("/room-types")
+    public ResponseEntity<List<String>> getAllRoomTypes() {
+        List<String> roomTypes = roomService.getAllRoomTypes();
+        return ResponseEntity.ok(roomTypes);
+    }
+
+    @DeleteMapping("/{roomID}")
+    public ResponseEntity<String> deleteRoom(@PathVariable Long roomID) {
+        Long deletedRoomID = roomService.deleteRoom(roomID);
+        return ResponseEntity.ok("Room with ID " + deletedRoomID + " has been deleted successfully.");
+    }
 }

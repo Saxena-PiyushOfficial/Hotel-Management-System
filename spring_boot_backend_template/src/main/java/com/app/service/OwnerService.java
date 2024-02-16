@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.dao.OwnerDAO;
 import com.app.dto.OwnerDTO; // Import the DTO class
+import com.app.dto.OwnerDTOAuth;
 import com.app.entity.Owner;
 
 @Service
@@ -25,7 +26,6 @@ public class OwnerService {
         owner = ownerDAO.save(owner);
         return modelMapper.map(owner, OwnerDTO.class);
     }
-
     public Optional<OwnerDTO> getOwnerById(Long ownerId) {
         Optional<Owner> ownerOptional = ownerDAO.findById(ownerId);
         return ownerOptional.map(owner -> modelMapper.map(owner, OwnerDTO.class));
@@ -46,4 +46,19 @@ public class OwnerService {
     public void deleteOwner(Long ownerId) {
         ownerDAO.deleteById(ownerId);
     }
+    
+    public Optional<OwnerDTO> authenticateOwner(String email, String password) {
+        Optional<Owner> ownerOptional = ownerDAO.findByEmail(email);
+        
+        if (ownerOptional.isPresent()) {
+            Owner owner = ownerOptional.get();
+            if (password.equals(owner.getPassword())) {
+                return Optional.of(modelMapper.map(owner, OwnerDTO.class));
+            }
+        }
+
+        return Optional.empty();
+    }
+    
+    
 }
