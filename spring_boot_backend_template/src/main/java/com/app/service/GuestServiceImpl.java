@@ -41,6 +41,7 @@ public class GuestServiceImpl implements GuestService {
 
 	@Override
 	public GuestDTO createGuest(GuestDTO guestDTO) {
+		guestDTO.setHotelID(1L);
 		long hotelId = guestDTO.getHotelID();
 		Optional<Hotel> optionalHotel = hotelDao.findById(hotelId);
 		Hotel oldHotel = optionalHotel.orElse(null);

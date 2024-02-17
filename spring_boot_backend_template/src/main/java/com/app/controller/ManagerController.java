@@ -13,52 +13,46 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/managers")
+@CrossOrigin
 public class ManagerController {
-     @Autowired
-    private ManagerService managerService;
+	@Autowired
+	private ManagerService managerService;
 
-     @Autowired
-     private HotelService hotelService;
+	@Autowired
+	public ManagerController(ManagerService managerService) {
+		this.managerService = managerService;
+	}
 
+	@Autowired
+	private HotelService hotelService;
 
-     @GetMapping("/revenue")
-     public ResponseEntity<Double> getRevenue(){
-     	return new ResponseEntity<Double>(hotelService.getTotalRevenue(), HttpStatus.OK) ;
-     }
-     
-     
-     
-     
-    @Autowired
-    public ManagerController(ManagerService managerService) {
-        this.managerService = managerService;
-    }
+	@GetMapping("/revenue")
+	public ResponseEntity<Double> getRevenue() {
+		return new ResponseEntity<Double>(hotelService.getTotalRevenue(), HttpStatus.OK);
+	}
 
-    @PostMapping
-    public ResponseEntity<ManagerDTOResp> createManager(@RequestBody ManagerDTOReq managerDTO) {
-    	ManagerDTOResp createdManager = managerService.createManager(managerDTO);
-        return new ResponseEntity<>(createdManager, HttpStatus.CREATED);
-    }
+	@PostMapping
+	public ResponseEntity<ManagerDTOResp> createManager(@RequestBody ManagerDTOReq managerDTO) {
+		ManagerDTOResp createdManager = managerService.createManager(managerDTO);
+		return new ResponseEntity<>(createdManager, HttpStatus.CREATED);
+	}
 
-    @GetMapping("/{managerId}")
-    public ResponseEntity<ManagerDTOReq> getManagerById(@PathVariable Long managerId) {
-    	ManagerDTOReq managerDTO = managerService.getManagerById(managerId);
-        return ResponseEntity.ok(managerDTO);
-    }
+	@GetMapping("/{managerId}")
+	public ResponseEntity<ManagerDTOReq> getManagerById(@PathVariable Long managerId) {
+		ManagerDTOReq managerDTO = managerService.getManagerById(managerId);
+		return ResponseEntity.ok(managerDTO);
+	}
 
-    @GetMapping
-    public ResponseEntity<List<ManagerDTOReq>> getAllManagers() {
-        List<ManagerDTOReq> managers = managerService.getAllManagers();
-        return ResponseEntity.ok(managers);
-    }
+	@GetMapping
+	public ResponseEntity<List<ManagerDTOReq>> getAllManagers() {
+		List<ManagerDTOReq> managers = managerService.getAllManagers();
+		return ResponseEntity.ok(managers);
+	}
 
-    @DeleteMapping("/{managerId}")
-    public ResponseEntity<String> deleteManager(@PathVariable Long managerId) {
-        Long deletedManagerId= managerService.deleteManager(managerId);
-        return ResponseEntity.ok("Manager with ID " + deletedManagerId + " has been deleted successfully.");
-    }
-    
-    
-   
+	@DeleteMapping("/{managerId}")
+	public ResponseEntity<String> deleteManager(@PathVariable Long managerId) {
+		Long deletedManagerId = managerService.deleteManager(managerId);
+		return ResponseEntity.ok("Manager with ID " + deletedManagerId + " has been deleted successfully.");
+	}
+
 }
-

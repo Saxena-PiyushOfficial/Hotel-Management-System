@@ -3,6 +3,7 @@ package com.app.entity;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,9 @@ public class Booking {
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private String docsDescription;
-    private String status;
+    
+    @Column(name = "no_of_guest", length = 100)
+	private int noOfGuest;
     
    	    
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

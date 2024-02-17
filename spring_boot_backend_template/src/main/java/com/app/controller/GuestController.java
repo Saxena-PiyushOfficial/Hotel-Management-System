@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/guests")
+@CrossOrigin
 public class GuestController {
 
     private final GuestService guestService;

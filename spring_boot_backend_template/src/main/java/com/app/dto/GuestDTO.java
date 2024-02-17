@@ -34,8 +34,7 @@ public class GuestDTO {
 	private String email;
 	@NotBlank
 	private String password;
-	
-	private int noOfGuest;
+
 	
 	private Long hotelID;
 	
