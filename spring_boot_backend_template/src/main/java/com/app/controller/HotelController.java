@@ -6,19 +6,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.app.dto.HotelDTO;
+import com.app.exception.EmptyDataException;
 import com.app.service.HotelService;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/hotels")
+@CrossOrigin
 public class HotelController {
 
     @Autowired
     private HotelService hotelService;
 
     @PostMapping
-    public ResponseEntity<HotelDTO> createHotel(@RequestBody HotelDTO hotelDTO) {
+    public ResponseEntity<HotelDTO> createHotel(@Valid @RequestBody HotelDTO hotelDTO) {
     	 System.out.println("Received HotelDTO: " + hotelDTO.toString());
     	HotelDTO savedHotel = hotelService.saveHotel(hotelDTO);
         return new ResponseEntity<>(savedHotel, HttpStatus.CREATED);
@@ -32,7 +36,7 @@ public class HotelController {
     }
 
     @GetMapping
-    public ResponseEntity<List<HotelDTO>> getAllHotels() {
+    public ResponseEntity<List<HotelDTO>> getAllHotels() throws EmptyDataException {
         List<HotelDTO> hotels = hotelService.getAllHotels();
         return new ResponseEntity<>(hotels, HttpStatus.OK);
     }

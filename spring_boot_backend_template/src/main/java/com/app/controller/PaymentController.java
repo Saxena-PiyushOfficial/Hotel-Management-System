@@ -10,8 +10,11 @@ import com.app.service.PaymentService;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/payments")
+@CrossOrigin
 public class PaymentController {
 
     private final PaymentService paymentService;
@@ -22,7 +25,7 @@ public class PaymentController {
     }
 
     @PostMapping
-    public ResponseEntity<PaymentDTO> createPayment(@RequestBody PaymentDTO paymentDTO) {
+    public ResponseEntity<PaymentDTO> createPayment(@Valid @RequestBody PaymentDTO paymentDTO) {
         PaymentDTO createdPayment = paymentService.createPayment(paymentDTO);
         return new ResponseEntity<>(createdPayment, HttpStatus.CREATED);
     }

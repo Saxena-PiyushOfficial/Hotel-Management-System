@@ -1,5 +1,7 @@
 package com.app.service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -14,10 +16,13 @@ import org.springframework.stereotype.Service;
 import com.app.dao.BookingDAO;
 import com.app.dao.GuestDAO;
 import com.app.dao.HotelDAO;
+import com.app.dao.PaymentDAO;
 import com.app.dto.BookingDTO;
+import com.app.dto.PaymentDTO;
 import com.app.entity.Booking;
 import com.app.entity.Guest;
 import com.app.entity.Hotel;
+import com.app.entity.Payment;
 
 @Service
 @Transactional
@@ -30,6 +35,9 @@ public class BookingServiceImpl implements BookingService {
 	HotelDAO hotelDao;
 
 	@Autowired
+	PaymentDAO paymentDao;
+	
+	@Autowired
 	GuestDAO guestDao;
 
 	@Autowired
@@ -40,7 +48,7 @@ public class BookingServiceImpl implements BookingService {
 		Long hotelID = newBooking.getHotelID();
 		Long guestID = newBooking.getGuestID();
 
-		Hotel oldHotel = hotelDao.findById(hotelID).orElse(null);
+		Hotel oldHotel = hotelDao.findById(1L).orElse(null);
 		Guest oldGuest = guestDao.findById(guestID).orElse(null);
 
 		newBooking.setHotel(oldHotel);
@@ -51,7 +59,7 @@ public class BookingServiceImpl implements BookingService {
 		
 		booking.setPayment(null);
 		
-		System.out.println(booking);
+		
 		
 		bookingDao.save(booking);
 		
@@ -70,6 +78,25 @@ public class BookingServiceImpl implements BookingService {
 	public List<BookingDTO> getAllBookings() {
 		List<Booking> bookings = bookingDao.findAll();
 		return bookings.stream().map(this::convertToDto).collect(Collectors.toList());
+	}
+	
+	public PaymentDTO addedPayment(Long bookingID)
+	{
+		Booking oldBooking=bookingDao.findById(bookingID).orElse(null);
+		double totalPayment = calculatePayment(1200, oldBooking.getCheckInDate(), oldBooking.getCheckOutDate());
+		
+		Payment newPayment=new Payment();
+		newPayment.setPaymentDate(LocalDate.now());
+		newPayment.setBooking(oldBooking);
+		newPayment.setPaymentMethod("UPI");
+		newPayment.setAmount(totalPayment);
+		
+		Payment savedPayment = paymentDao.save(newPayment);
+		
+		oldBooking.setPayment(savedPayment);
+		bookingDao.save(oldBooking);
+		
+		return modelMapper.map(savedPayment, PaymentDTO.class);
 	}
 
 	@Override
@@ -94,5 +121,21 @@ public class BookingServiceImpl implements BookingService {
 		}
 		return bookingDto;
 	}
+	public double calculateTotalPayment(List<Booking> bookings) {
+        double totalPayment = 0.0;
+        for (Booking booking : bookings) {
+            Payment payment = booking.getPayment(); // Assuming Payment is a member of Booking
+            if (payment != null) {
+                totalPayment += payment.getAmount();
+            }
+        }
+        return totalPayment;
+    }
+ 
+ public double calculatePayment(double pricePerNight, LocalDate checkInDate, LocalDate checkOutDate) {
+        long numberOfNights = ChronoUnit.DAYS.between(checkInDate, checkOutDate);
+        return pricePerNight * numberOfNights;
+    }
+
 
 }

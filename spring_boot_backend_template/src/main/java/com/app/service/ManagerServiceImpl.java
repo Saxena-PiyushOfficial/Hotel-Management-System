@@ -18,6 +18,7 @@ import com.app.dto.ManagerDTOReq;
 import com.app.dto.ManagerDTOResp;
 import com.app.entity.Hotel;
 import com.app.entity.Manager;
+import com.app.exception.EmptyDataException;
 
 
 @Transactional
@@ -37,13 +38,14 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public ManagerDTOResp createManager(ManagerDTOReq managerDTO) {
-    	long id= managerDTO.getHotelId();
-    	Optional<Hotel> optionalHotel= hotelDAO.findById(id);
+//    	long id= managerDTO.getHotelId();
+    	Optional<Hotel> optionalHotel= hotelDAO.findById(1L);
     	Hotel oldHotel= optionalHotel.orElse(null);
     	managerDTO.setHotel(oldHotel);
         Manager manager = modelMapper.map(managerDTO, Manager.class);
 //        manager.setHotel(oldHotel);
         Manager savedManager = managerDAO.save(manager);
+        
         return modelMapper.map(savedManager, ManagerDTOResp.class);
     }
 
@@ -57,8 +59,11 @@ public class ManagerServiceImpl implements ManagerService {
     
    
     @Override
-    public List<ManagerDTOReq> getAllManagers() {
+    public List<ManagerDTOReq> getAllManagers() throws EmptyDataException {
         List<Manager> managers = managerDAO.findAll();
+        if (managers.isEmpty()) {
+            throw new EmptyDataException("No managers found in the database");
+        }
         return managers.stream().map(this::convertToDto)
                 .collect(Collectors.toList());
     }

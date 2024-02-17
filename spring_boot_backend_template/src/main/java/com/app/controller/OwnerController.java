@@ -1,6 +1,8 @@
 package com.app.controller;
 
 import com.app.dto.OwnerDTO;
+import com.app.exception.EmptyDataException;
+import com.app.service.HotelService;
 import com.app.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,12 +14,20 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/owners")
+@CrossOrigin
 public class OwnerController {
 
     @Autowired
     private OwnerService ownerService;
 
+    @Autowired
+    private HotelService hotelService;
 
+
+    @GetMapping("/revenue")
+    public ResponseEntity<Double> getRevenue(){
+    	return new ResponseEntity<Double>(hotelService.getTotalRevenue(), HttpStatus.OK) ;
+    }
 
     @GetMapping("/{ownerId}")
     public ResponseEntity<OwnerDTO> getOwnerById(@PathVariable Long ownerId) {
@@ -34,7 +44,7 @@ public class OwnerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<OwnerDTO>> getAllOwners() {
+    public ResponseEntity<List<OwnerDTO>> getAllOwners() throws EmptyDataException {
         List<OwnerDTO> owners = ownerService.getAllOwners();
         return new ResponseEntity<>(owners, HttpStatus.OK);
     }

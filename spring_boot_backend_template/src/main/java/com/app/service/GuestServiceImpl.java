@@ -22,6 +22,7 @@ import com.app.entity.Booking;
 import com.app.entity.Guest;
 import com.app.entity.Hotel;
 import com.app.entity.Manager;
+import com.app.exception.EmptyDataException;
 
 
 @Transactional
@@ -41,8 +42,9 @@ public class GuestServiceImpl implements GuestService {
 
 	@Override
 	public GuestDTO createGuest(GuestDTO guestDTO) {
+		guestDTO.setHotelID(1L);
 		long hotelId = guestDTO.getHotelID();
-		Optional<Hotel> optionalHotel = hotelDao.findById(hotelId);
+		Optional<Hotel> optionalHotel = hotelDao.findById(1L);
 		Hotel oldHotel = optionalHotel.orElse(null);
 		guestDTO.setHotel(oldHotel);
 		Guest guest = modelMapper.map(guestDTO, Guest.class);
@@ -59,8 +61,11 @@ public class GuestServiceImpl implements GuestService {
 	}
 
 	@Override
-	public List<GuestDTO> getAllGuests() {
+	public List<GuestDTO> getAllGuests() throws EmptyDataException {
 		List<Guest> guests = guestDao.findAll();
+		 if (guests.isEmpty()) {
+	            throw new EmptyDataException("No guests found in the database");
+	        }
 		return guests.stream().map(this::convertToDto).collect(Collectors.toList());
 	}
 

@@ -6,46 +6,56 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.app.dto.ManagerDTOReq;
 import com.app.dto.ManagerDTOResp;
+import com.app.exception.EmptyDataException;
+import com.app.service.HotelService;
 import com.app.service.ManagerService;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/managers")
+@CrossOrigin
 public class ManagerController {
+	@Autowired
+	private ManagerService managerService;
 
-    private ManagerService managerService;
+	@Autowired
+	public ManagerController(ManagerService managerService) {
+		this.managerService = managerService;
+	}
 
-    @Autowired
-    public ManagerController(ManagerService managerService) {
-        this.managerService = managerService;
-    }
+	@Autowired
+	private HotelService hotelService;
 
-    @PostMapping
-    public ResponseEntity<ManagerDTOResp> createManager(@RequestBody ManagerDTOReq managerDTO) {
-    	ManagerDTOResp createdManager = managerService.createManager(managerDTO);
-        return new ResponseEntity<>(createdManager, HttpStatus.CREATED);
-    }
+	@GetMapping("/revenue")
+	public ResponseEntity<Double> getRevenue() {
+		return new ResponseEntity<Double>(hotelService.getTotalRevenue(), HttpStatus.OK);
+	}
 
-    @GetMapping("/{managerId}")
-    public ResponseEntity<ManagerDTOReq> getManagerById(@PathVariable Long managerId) {
-    	ManagerDTOReq managerDTO = managerService.getManagerById(managerId);
-        return ResponseEntity.ok(managerDTO);
-    }
+	@PostMapping
+	public ResponseEntity<ManagerDTOResp> createManager(@Valid @RequestBody ManagerDTOReq managerDTO) {
+		ManagerDTOResp createdManager = managerService.createManager(managerDTO);
+		return new ResponseEntity<>(createdManager, HttpStatus.CREATED);
+	}
 
-    @GetMapping
-    public ResponseEntity<List<ManagerDTOReq>> getAllManagers() {
-        List<ManagerDTOReq> managers = managerService.getAllManagers();
-        return ResponseEntity.ok(managers);
-    }
+	@GetMapping("/{managerId}")
+	public ResponseEntity<ManagerDTOReq> getManagerById(@PathVariable Long managerId) {
+		ManagerDTOReq managerDTO = managerService.getManagerById(managerId);
+		return ResponseEntity.ok(managerDTO);
+	}
 
-    @DeleteMapping("/{managerId}")
-    public ResponseEntity<String> deleteManager(@PathVariable Long managerId) {
-        Long deletedManagerId= managerService.deleteManager(managerId);
-        return ResponseEntity.ok("Manager with ID " + deletedManagerId + " has been deleted successfully.");
-    }
-    
-    
-   
+	@GetMapping
+	public ResponseEntity<List<ManagerDTOReq>> getAllManagers() throws EmptyDataException{
+		List<ManagerDTOReq> managers = managerService.getAllManagers();
+		return ResponseEntity.ok(managers);
+	}
+
+	@DeleteMapping("/{managerId}")
+	public ResponseEntity<String> deleteManager(@PathVariable Long managerId) {
+		Long deletedManagerId = managerService.deleteManager(managerId);
+		return ResponseEntity.ok("Manager with ID " + deletedManagerId + " has been deleted successfully.");
+	}
+
 }
-

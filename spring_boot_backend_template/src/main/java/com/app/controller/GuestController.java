@@ -6,12 +6,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.app.dto.GuestDTO;
+import com.app.exception.EmptyDataException;
 import com.app.service.GuestService;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/guests")
+@CrossOrigin
 public class GuestController {
 
     private final GuestService guestService;
@@ -22,7 +26,7 @@ public class GuestController {
     }
 
     @PostMapping
-    public ResponseEntity<GuestDTO> createGuest(@RequestBody GuestDTO guestDTO) {
+    public ResponseEntity<GuestDTO> createGuest(@Valid @RequestBody GuestDTO guestDTO) {
         GuestDTO createdGuest = guestService.createGuest(guestDTO);
         return new ResponseEntity<>(createdGuest, HttpStatus.CREATED);
     }
@@ -34,7 +38,7 @@ public class GuestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GuestDTO>> getAllGuests() {
+    public ResponseEntity<List<GuestDTO>> getAllGuests() throws EmptyDataException {
         List<GuestDTO> guests = guestService.getAllGuests();
         return ResponseEntity.ok(guests);
     }

@@ -12,15 +12,18 @@ import com.app.service.StaffService;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/staff")
+@CrossOrigin
 public class StaffController {
 
     @Autowired
     private StaffService staffService;
 
     @PostMapping
-    public ResponseEntity<StaffDTO> createStaff(@RequestBody StaffDTO staffDTO) {
+    public ResponseEntity<StaffDTO> createStaff(@Valid @RequestBody StaffDTO staffDTO) {
         StaffDTO savedStaff = staffService.saveStaff(staffDTO);
         return new ResponseEntity<>(savedStaff, HttpStatus.CREATED);
     }

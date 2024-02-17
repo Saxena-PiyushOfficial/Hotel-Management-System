@@ -7,6 +7,8 @@ import com.app.entity.Hotel;
 
 import com.app.entity.Room;
 import com.app.entity.RoomTypes;
+import com.app.exception.EmptyDataException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +36,7 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public RoomDTOResp createRoom(RoomDTOReq roomDTO) {
         long id = roomDTO.getHotelID();
-        Optional<Hotel> optionalHotel = hotelDAO.findById(id);
+        Optional<Hotel> optionalHotel = hotelDAO.findById(1L);
         Hotel oldHotel = optionalHotel.orElse(null);
         roomDTO.setHotel(oldHotel);
 
@@ -63,8 +65,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<RoomDTOReq> getAllRooms() {
+    public List<RoomDTOReq> getAllRooms() throws EmptyDataException {
         List<Room> rooms = roomDAO.findAll();
+        if (rooms.isEmpty()) {
+            throw new EmptyDataException("No rooms found in the database");
+        }
         return rooms.stream()
                 .map(room -> modelMapper.map(room, RoomDTOReq.class))
                 .collect(Collectors.toList());

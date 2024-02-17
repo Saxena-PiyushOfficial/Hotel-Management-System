@@ -3,9 +3,12 @@ package com.app.controller;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +26,7 @@ import com.app.service.OwnerService;
 
 
 @RestController
+@CrossOrigin
 public class LoginController {
 	
 	  @Autowired
@@ -33,13 +37,12 @@ public class LoginController {
 	    private GuestServiceImpl guestService;
 	
 	 @PostMapping("managers/authenticate")
-	    public ResponseEntity<ManagerDTOResp> authenticateManager(@RequestBody ManagerDTOAuth authDTO) {
+	    public ResponseEntity<ManagerDTOResp> authenticateManager(@Valid @RequestBody ManagerDTOAuth authDTO) {
 	        ManagerDTOResp authenticatedManager = managerService.authenticateManager(authDTO);
 	        return ResponseEntity.ok(authenticatedManager);
 	    }
-	
 	  @PostMapping("owners/authenticate")
-	    public ResponseEntity<OwnerDTO> authenticateOwner(@RequestBody OwnerDTOAuth requestOwner) {
+	    public ResponseEntity<OwnerDTO> authenticateOwner(@Valid @RequestBody OwnerDTOAuth requestOwner) {
 	        Optional<OwnerDTO> authenticatedOwner = ownerService.authenticateOwner(requestOwner.getEmail(), requestOwner.getPassword());
 	        
 	        return authenticatedOwner.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
@@ -49,7 +52,7 @@ public class LoginController {
 	   
 
 	    @PostMapping("guests/authenticate")
-	    public ResponseEntity<GuestDTO> authenticateGuest(@RequestBody GuestDTOAuth authDTO) {
+	    public ResponseEntity<GuestDTO> authenticateGuest(@Valid @RequestBody GuestDTOAuth authDTO) {
 	        try {
 	            GuestDTO authenticatedGuest = guestService.authenticateGuest(authDTO);
 	            return ResponseEntity.ok(authenticatedGuest);

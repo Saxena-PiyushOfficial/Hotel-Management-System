@@ -2,15 +2,15 @@ package com.app.service;
 
 import java.util.List;
 
-import com.app.dto.ManagerDTOReq;
-import com.app.dto.StaffDTO;
 
+import com.app.dto.StaffDTO;
 import com.app.entity.Manager;
 import com.app.entity.Staff;
-
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.dao.ManagerDAO;
 import com.app.dao.StaffDAO;
-
+@Transactional
 @Service
 public class StaffService {
 

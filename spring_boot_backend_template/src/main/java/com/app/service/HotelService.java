@@ -9,14 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.HotelDAO;
+import com.app.dao.PaymentDAO;
 import com.app.dto.HotelDTO;
 import com.app.entity.Hotel;
+import com.app.entity.Payment;
+import com.app.exception.EmptyDataException;
 
 @Service
 public class HotelService {
 
     @Autowired
     private HotelDAO hotelDAO;
+    
+    @Autowired
+	private PaymentDAO paymentDAO;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -32,12 +38,15 @@ public class HotelService {
     }
 
     public Optional<HotelDTO> getHotelById(Long hotelId) {
-        Optional<Hotel> hotelOptional = hotelDAO.findById(hotelId);
+        Optional<Hotel> hotelOptional = hotelDAO.findById(1L);
         return hotelOptional.map(hotel -> modelMapper.map(hotel, HotelDTO.class));
     }
 
-    public List<HotelDTO> getAllHotels() {
+    public List<HotelDTO> getAllHotels() throws EmptyDataException {
         List<Hotel> hotels = hotelDAO.findAll();
+        if (hotels.isEmpty()) {
+            throw new EmptyDataException("No hotels found in the database");
+        }
         return hotels.stream()
                 .map(hotel -> modelMapper.map(hotel, HotelDTO.class))
                 .collect(Collectors.toList());
@@ -53,4 +62,21 @@ public class HotelService {
     public void deleteHotel(Long hotelId) {
         hotelDAO.deleteById(hotelId);
     }
+    
+    public Double getTotalRevenue() {
+		List<Payment> paymentList = paymentDAO.findAll();
+		return calculateTotalPayment(paymentList);
+	}
+
+	public double calculateTotalPayment(List<Payment> payments) {
+		double totalPayment = 0.0;
+		for (Payment payment : payments) {
+
+			totalPayment += payment.getAmount();
+
+		}
+		return totalPayment;
+	}
+    
+    
 }

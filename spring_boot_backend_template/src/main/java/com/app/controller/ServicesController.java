@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/services")
+@CrossOrigin
 public class ServicesController {
 
     private final HotelServicesService hotelServicesService;
@@ -54,7 +57,7 @@ public class ServicesController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Void> addService(@RequestBody ServicesDTO servicesDTO) {
+    public ResponseEntity<Void> addService(@Valid @RequestBody ServicesDTO servicesDTO) {
         hotelServicesService.addService(servicesDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -12,6 +12,7 @@ import com.app.dao.OwnerDAO;
 import com.app.dto.OwnerDTO; // Import the DTO class
 import com.app.dto.OwnerDTOAuth;
 import com.app.entity.Owner;
+import com.app.exception.EmptyDataException;
 
 @Service
 public class OwnerService {
@@ -36,8 +37,11 @@ public class OwnerService {
         return ownerOptional.map(owner -> modelMapper.map(owner, OwnerDTO.class));
     }
 
-    public List<OwnerDTO> getAllOwners() {
+    public List<OwnerDTO> getAllOwners() throws EmptyDataException {
         List<Owner> owners = ownerDAO.findAll();
+        if (owners.isEmpty()) {
+            throw new EmptyDataException("No owner found in the database");
+        }
         return owners.stream()
                 .map(owner -> modelMapper.map(owner, OwnerDTO.class))
                 .collect(Collectors.toList());

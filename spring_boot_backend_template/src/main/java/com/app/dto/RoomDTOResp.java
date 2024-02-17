@@ -1,7 +1,16 @@
 package com.app.dto;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
 import com.app.entity.Hotel;
 import com.app.entity.RoomTypes;
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -9,12 +18,25 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class RoomDTOResp {
+	
     private Long roomID;
+    
+    
 	private Hotel hotel;
-    private long roomNumber;
-    private RoomTypes roomType;
-    private double pricePerNight;
-    private String isAvailable;
-    private String cleanStatus;
+	
+	 @Positive(message = "Room number must be a positive value")
+	    private long roomNumber;
+
+	    @NotNull(message = "Room type is required")
+	    private RoomTypes roomType;
+
+	    @Positive(message = "Price per night must be a positive value")
+	    private double pricePerNight;
+
+	    @NotBlank(message = "Availability status is required")
+	    private String isAvailable;
+
+	    @NotBlank(message = "Clean status is required")
+	    private String cleanStatus;
   
 }
