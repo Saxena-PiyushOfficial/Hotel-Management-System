@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 import com.app.entity.Hotel;
 @Repository
 public interface HotelDAO extends JpaRepository<Hotel, Long>  {
-	List<Hotel> findByOwner(Long ownerID);
+	List<Hotel> findByOwnerOwnerID(Long ownerID);
 }

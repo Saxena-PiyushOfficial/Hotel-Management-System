@@ -4,7 +4,6 @@ import com.app.entity.Owner;
 
 import lombok.*;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,7 +19,6 @@ public class HotelDTO {
 	private String checkInTime;
 	private String checkOutTime;
 	private Owner owner;
-	 private double revenue;
-	
-	
+	private double revenue;
+
 }

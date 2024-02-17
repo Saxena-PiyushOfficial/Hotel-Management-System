@@ -9,14 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.HotelDAO;
+import com.app.dao.PaymentDAO;
 import com.app.dto.HotelDTO;
 import com.app.entity.Hotel;
+import com.app.entity.Payment;
 
 @Service
 public class HotelService {
 
     @Autowired
     private HotelDAO hotelDAO;
+    
+    @Autowired
+	private PaymentDAO paymentDAO;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -44,7 +49,7 @@ public class HotelService {
     }
 
     public List<HotelDTO> getHotelsByOwner(Long ownerId) {
-        List<Hotel> hotels = hotelDAO.findByOwner(ownerId);
+        List<Hotel> hotels = hotelDAO.findByOwnerOwnerID(ownerId);
         return hotels.stream()
                 .map(hotel -> modelMapper.map(hotel, HotelDTO.class))
                 .collect(Collectors.toList());
@@ -53,4 +58,21 @@ public class HotelService {
     public void deleteHotel(Long hotelId) {
         hotelDAO.deleteById(hotelId);
     }
+    
+    public Double getTotalRevenue() {
+		List<Payment> paymentList = paymentDAO.findAll();
+		return calculateTotalPayment(paymentList);
+	}
+
+	public double calculateTotalPayment(List<Payment> payments) {
+		double totalPayment = 0.0;
+		for (Payment payment : payments) {
+
+			totalPayment += payment.getAmount();
+
+		}
+		return totalPayment;
+	}
+    
+    
 }

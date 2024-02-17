@@ -20,13 +20,18 @@ public class BookingDTO {
 	private int roomNumber;
 	private LocalDate checkInDate;
 	private LocalDate checkOutDate;
-
+	private String docsDescription;
 	private String status;
+
+	private Long paymentID;
+	private Long hotelID;
+	private Long guestID;
 	
+	@JsonIgnore
 	private Payment payment;
-	 
+	@JsonIgnore
 	private Guest guest;
-	
+	@JsonIgnore
 	private Hotel hotel;
 
 }

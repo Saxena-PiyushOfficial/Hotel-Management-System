@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.dao.HotelDAO;
 import com.app.dao.ManagerDAO;
+import com.app.dto.ManagerDTOAuth;
 import com.app.dto.ManagerDTOReq;
 import com.app.dto.ManagerDTOResp;
 import com.app.entity.Hotel;
@@ -39,8 +40,9 @@ public class ManagerServiceImpl implements ManagerService {
     	long id= managerDTO.getHotelId();
     	Optional<Hotel> optionalHotel= hotelDAO.findById(id);
     	Hotel oldHotel= optionalHotel.orElse(null);
+    	managerDTO.setHotel(oldHotel);
         Manager manager = modelMapper.map(managerDTO, Manager.class);
-        manager.setHotel(oldHotel);
+//        manager.setHotel(oldHotel);
         Manager savedManager = managerDAO.save(manager);
         return modelMapper.map(savedManager, ManagerDTOResp.class);
     }
@@ -74,9 +76,32 @@ public class ManagerServiceImpl implements ManagerService {
     
     @Override
     public Long deleteManager(Long managerId) {
-    	Manager manager = managerDAO.findById(managerId)
+    	managerDAO.findById(managerId)
                 .orElseThrow(() -> new NoSuchElementException("Manager not found with id: " + managerId));
         managerDAO.deleteById(managerId);
         return managerId;
     }
+    
+    
+    @Override
+    public ManagerDTOResp authenticateManager(ManagerDTOAuth authDTO) {
+        String email = authDTO.getEmail();
+        String password = authDTO.getPassword();
+
+        Manager manager = managerDAO.findByEmail(email)
+                .orElseThrow(() -> new NoSuchElementException("Manager not found with email: " + email));
+
+        if (password.equals(manager.getPassword())) {
+            return modelMapper.map(manager, ManagerDTOResp.class);
+        } else {
+            throw new RuntimeException("Incorrect password for manager with email: " + email);
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
 }

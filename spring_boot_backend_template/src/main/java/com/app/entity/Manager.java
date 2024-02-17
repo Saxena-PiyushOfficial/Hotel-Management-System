@@ -2,18 +2,14 @@ package com.app.entity;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -52,4 +48,16 @@ public class Manager {
 	@Column(name = "hire_date")
 	private LocalDate hireDate;
 
+	@OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Staff> staffs = new ArrayList<>();
+
+	public void addChild(Staff staff) {
+		staffs.add(staff);
+		staff.setManager(this); // Set the parent reference on the child
+	}
+
+	public void removeChild(Staff staff) {
+		staffs.remove(staff);
+		staff.setManager(null); // Remove the parent reference from the child
+	}
 }

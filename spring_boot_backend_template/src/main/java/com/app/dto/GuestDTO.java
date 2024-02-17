@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.*;
 
+import com.app.entity.Booking;
 import com.app.entity.Hotel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -33,9 +34,17 @@ public class GuestDTO {
 	private String email;
 	@NotBlank
 	private String password;
+	
 	private int noOfGuest;
+	
+	private Long hotelID;
+	
+	private Long bookingID;
+	
 	@JsonIgnore
 	private Hotel hotel;
+	@JsonIgnore
+	private Booking booking;
 
 	
 
