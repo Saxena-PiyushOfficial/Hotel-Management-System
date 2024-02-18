@@ -49,9 +49,6 @@ public class Guest {
 	@Column(name = "password", nullable = false, length = 100)
 	private String password;
 
-	@Column(name = "no_of_guest", length = 100)
-	private int noOfGuest;
-
 	@ManyToOne
 	@JoinColumn(name = "hotelID", referencedColumnName = "hotelID")
 	private Hotel hotel;

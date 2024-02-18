@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/owners")
+@CrossOrigin
 public class OwnerController {
 
     @Autowired

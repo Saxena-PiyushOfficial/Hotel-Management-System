@@ -45,10 +45,10 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public BookingDTO addBooking(BookingDTO newBooking) {
-		Long hotelID = newBooking.getHotelID();
+//		Long hotelID = newBooking.getHotelID();
 		Long guestID = newBooking.getGuestID();
 
-		Hotel oldHotel = hotelDao.findById(hotelID).orElse(null);
+		Hotel oldHotel = hotelDao.findById(1L).orElse(null);
 		Guest oldGuest = guestDao.findById(guestID).orElse(null);
 
 		newBooking.setHotel(oldHotel);

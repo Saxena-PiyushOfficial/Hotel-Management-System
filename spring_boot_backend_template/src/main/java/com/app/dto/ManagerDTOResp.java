@@ -12,7 +12,8 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class ManagerDTOResp {
-
+	
+	private Long managerId;
 	private Hotel hotel;
 	private String firstName;
 	private String lastName;

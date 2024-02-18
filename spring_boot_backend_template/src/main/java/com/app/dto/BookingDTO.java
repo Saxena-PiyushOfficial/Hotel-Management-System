@@ -16,12 +16,12 @@ import lombok.Getter;
 @ToString
 public class BookingDTO {
 
-	private Long bookingID;
+
 	private int roomNumber;
 	private LocalDate checkInDate;
 	private LocalDate checkOutDate;
 	private String docsDescription;
-	private String status;
+	private Integer noOfGuest;
 
 	private Long paymentID;
 	private Long hotelID;
