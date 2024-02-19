@@ -33,8 +33,8 @@ export default function Signup() {
     }
     HmsAPIService.addUser(signUpData1).then((result) => {
       console.log(result);
-      navigate('/manager', { replace: true });
-      toast.success("SignUP Successful..");;
+      navigate('/login', { replace: true });
+      toast.success("SignUP Successful..");
     }).catch((error) => {
       console.log(error);
       toast.error("Error 400/500..");

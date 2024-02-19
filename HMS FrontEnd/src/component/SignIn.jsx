@@ -175,12 +175,12 @@ export default function SignIn() {
                         Remember me
                       </label>
                     </div> */}
-                    <Link
+                    {/* <Link
                       className="nav-link-inline font-size-sm"
                       to="account-password-recovery.html"
                     >
                       Forgot password?
-                    </Link>
+                    </Link> */}
                   </div>
                   <hr className="mt-4" />
                   <div className="text-right">

@@ -1,140 +1,164 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import "../css/style.css";
+import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import HmsAPIService from "../services/HmsAPIService";
 
-const StaffList = () => {
-  // State to store staff information
-  const [staff, setStaff] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+export default function BookingForm() {
 
-  // Dummy staff data
-  const dummyStaff = [
-    { ManagerId: 1, firstName: 'John', lastName: 'Doe', salary: 60000, dob: '1990-01-01', phone: '123-456-7890', email: 'john.doe@example.com', password: 'password123', hireDate: '2022-01-15' },
-    { id: 2, firstName: 'Jane', lastName: 'Smith', salary: 50000, dob: '1992-05-20', phone: '987-654-3210', email: 'jane.smith@example.com', password: 'pass456', hireDate: '2022-02-20' },
-    // Add more dummy staff data as needed
-  ];
 
-  const fetchStaff = async () => {
-    try {
-      setStaff(dummyStaff);
-    } catch (error) {
-      console.error('Error fetching staff:', error);
+  let [formData, setFormData] = useState({
+    checkInDate: '', checkOutDate: '', docsDescription: '', noOfGuest: ''
+    , guestID: '', roomNumber: ''
+  });
+
+  const navigate = useNavigate();
+
+  const changeHandle = (event) => {
+    const { name, value } = event.target
+    setFormData({ ...formData, [name]: value });
+  }
+
+  const addData = (event) => {
+    debugger
+    event.preventDefault();
+    if (formData.checkInDate === "" || formData.checkOutDate === "" || formData.docsDescription === "" || formData.noOfGuest
+      === "" || formData.roomNumber === "") {
+      toast.error("Plase enter valid data..");
+      return;
     }
-  };
 
-  // Fetch staff data when the component mounts
+    let formData1 = {
+      checkInDate: formData.checkInDate, checkOutDate: formData.checkOutDate, docsDescription: formData.docsDescription,
+      noOfGuest: formData.noOfGuest, guestID: formData.guestID, roomNumber: formData.roomNumber
+    }
+
+    HmsAPIService.addBooking(formData1).then((result) => {
+      console.log(result);
+      navigate('/home', { replace: true });
+      toast.success("SignUP Successful..");;
+    }).catch((error) => {
+      console.log(error);
+      toast.error("Error 400/500..");
+    });
+
+    setFormData({
+      checkInDate: '', checkOutDate: '', docsDescription: '', noOfGuest: '', phone: ''
+      , guestID: '', roomNumber: ''
+    })
+  }
+
   useEffect(() => {
-    fetchStaff();
-  }, []);
+    // Retrieve userinfo from session storage
+    const userinfo = JSON.parse(sessionStorage.getItem('userinfo'));
+    if (userinfo) {
+      // Extract managerId from userinfo and set it as the initial value for formData.managerId
+      setFormData(prevState => ({
+        ...prevState,
+        guestID: userinfo.guestID.toString() // Assuming managerId is a number
+      }));
+    }
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
 
-  // Filter staff based on search query
-  const filteredStaff = staff.filter((employee) =>
-    `${employee.firstName} ${employee.lastName}`.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   return (
-    <div style={styles.adminPage}>
-      <div style={styles.adminHeader}>
-        <h1>Manager List</h1>
-        <button style={{ ...styles.button, padding: '2px 4px 2px 4px' }} ><Link to="/home">Logout</Link></button>
-      </div>
-      <div style={styles.adminActions}>
-        <button style={{ ...styles.button, marginRight: '150px', padding: '10px 20px 10px 20px' }}><Link to="/addmanager">Add New</Link></button>
-        <button style={{ ...styles.button, marginRight: '150px', padding: '10px 20px 10px 20px' }}>Remove</button>
-        <input
-          type="text"
-          placeholder="Search Staff"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
-      <div style={styles.staffList}>
-        <table style={styles.table}>
-          <thead>
-            <tr>
-              <th>ManagerId</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Salary</th>
-              <th>DOB</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>Password</th>
-              <th>Hire Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredStaff.map((employee) => (
-              <tr key={employee.id}>
-                <td>{employee.ManagerId}</td>
-                <td>{employee.firstName}</td>
-                <td>{employee.lastName}</td>
-                <td>{employee.salary}</td>
-                <td>{employee.dob}</td>
-                <td>{employee.phone}</td>
-                <td>{employee.email}</td>
-                <td>{employee.password}</td>
-                <td>{employee.hireDate}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div>
+      <div>
+        <form className="booking-form" action="#" method="post">
+          <div className="container mb-sm-6">
+            <div className="row">
+              <div className="elem-group inlined">
+                <label htmlFor="adult">Adults</label>
+                <input
+                  type="number"
+                  id="adult"
+                  name="noOfGuest"
+                  placeholder="Number Of Adults"
+                  min="1"
+                  required
+                  value={formData.noOfGuest}
+                  onChange={changeHandle}
+                />
+              </div>
+              <div className="elem-group inlined">
+                <label htmlFor="child">Children</label>
+                <input
+                  type="number"
+                  id="child"
+                  name="total_children"
+                  placeholder="Number Of Children"
+                  min="0"
+                  required
+                />
+              </div>
+              <div className="elem-group inlined">
+                <label htmlFor="checkin-date">Check-in Date</label>
+                <input
+                  type="date"
+                  id="checkin-date"
+                  name="checkInDate"
+                  required
+                  value={formData.checkInDate}
+                  onChange={changeHandle}
+                />
+              </div>
+              <div className="elem-group inlined">
+                <label htmlFor="checkout-date">Check-out Date</label>
+                <input
+                  type="date"
+                  id="checkout-date"
+                  name="checkOutDate"
+                  required
+                  value={formData.checkOutDate}
+                  onChange={changeHandle}
+                />
+
+
+              </div>
+              <div className="elem-group">
+                <label htmlFor="room-selection">Select Room</label>
+                <select
+                  id="room-selection"
+                  name="roomNumber"
+                  required
+                  value={formData.roomNumber}
+                  onChange={changeHandle}
+                >
+                  <option value="">Choose a Room</option>
+                  <option value="1">1</option>
+                  <option value="3">3</option>
+                  <option value="5">5</option>
+                  <option value="7">7</option>
+                  <option value="9">9</option>
+                  <option value="11">11</option>
+                  <option value="13">13</option>
+                  <option value="17">17</option>
+                </select>
+              </div>
+              {/* New dropdown box for selecting documents */}
+              <div className="elem-group">
+                <label htmlFor="document-selection">Select Document</label>
+                <select
+                  id="document-selection"
+                  name="docsDescription"
+                  required
+                  value={formData.docsDescription}
+                  onChange={changeHandle}
+                >
+                  <option value="">Choose a Document</option>
+                  <option value="aadhar">Aadhar Card</option>
+                  <option value="voting">Voting Card</option>
+                  <option value="pan">Pan Card</option>
+                  <option value="passport">Passport</option>
+                </select>
+              </div>
+              <hr />
+              <button className="btn btn-primary" type="button" onClick={addData}>Book The Rooms</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );
-};
-
-const styles = {
-  adminPage: {
-    maxWidth: '800px',
-    margin: '0 auto',
-    padding: '20px',
-    fontFamily: 'Arial, sans-serif',
-  },
-  adminHeader: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: '20px',
-  },
-  adminActions: {
-    display: 'inline-flex',
-    marginBottom: '20px',
-  },
-  staffList: {
-    maxWidth: '100%',
-    overflowX: 'auto',
-  },
-  table: {
-    width: '100%',
-    borderCollapse: 'collapse',
-    border: '1px solid #ddd',
-  },
-  th: {
-    backgroundColor: '#ffffff',
-    boxShadow: '0px 0px 9px 0px rgba(0,0,0,0.1)',
-    fontWeight: 'bold',
-    border: '1px solid #ddd',
-    padding: '10px',
-    textAlign: 'left',
-  },
-  td: {
-    border: 'none',
-    borderBottom: '1px solid #ddd',
-    padding: '10px',
-  },
-  row: {
-    transition: 'background-color 0.3s ease',
-  },
-  button: {
-    marginRight: '10px',
-    padding: '10px 20px',
-    backgroundColor: '#000000',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s ease',
-  },
-};
-
-export default StaffList;
+}

@@ -112,7 +112,7 @@ function Home() {
 
                 <div className="col-md-12">
                   <button className="book_btn">
-                    <Link to="/room">Book Now</Link>
+                    <Link to="/login">Book Now</Link>
                   </button>
                 </div>
                 {/* </div> */}
@@ -174,7 +174,7 @@ function Home() {
                   </figure>
                 </div>
                 <div className="bed_room">
-                <h3>Triple Bed Room</h3>
+                <h3><Link to="/room">Triple Bed Room</Link></h3>
                   <p>
                   A room that can accommodate three persons and has
                    been fitted with three twin beds, one double bed 
@@ -191,7 +191,7 @@ function Home() {
                   </figure>
                 </div>
                 <div className="bed_room">
-                <h3>Double Bed Room(AC)</h3>
+                <h3><Link to="/room">Double Bed Room(AC)</Link></h3>
                   <p>
                   A room assigned to two people. May have one or more beds.
                   The room size or area of Double Rooms are generally between 
@@ -225,7 +225,7 @@ function Home() {
                   </figure>
                 </div>
                 <div className="bed_room">
-                <h3>Quad Bed Room</h3>
+                <h3><Link to="/room">Quad Bed Room</Link></h3>
                   <p>
                   A room assigned to four people. May have two or more beds.
                   The room size or area of Quad Rooms is generally between
@@ -242,7 +242,7 @@ function Home() {
                   </figure>
                 </div>
                 <div className="bed_room">
-                <h3> Queen Bed Room</h3>
+                <h3> <Link to="/room">Queen Bed Room</Link></h3>
                   <p>
                   room with a queen-sized bed. May be occupied by one or more people.
                   The room size or area of Queen Rooms is generally between 32 m² to 50 m².{" "}
@@ -258,7 +258,7 @@ function Home() {
                   </figure>
                 </div>
                 <div className="bed_room">
-                <h3>King Bed Room</h3>
+                <h3><Link to="/room">King Bed Room</Link></h3>
                   <p>
                   A room with a king-sized bed. May be occupied by one or more people.
                   The room size or area of King Rooms is generally between 32 m² to 50 m².{" "}
@@ -477,7 +477,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="contact">
+      {/* <div className="contact">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -547,7 +547,7 @@ function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* <footer>
          <BottamBar />

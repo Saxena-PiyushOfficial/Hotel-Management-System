@@ -19,11 +19,21 @@ import Book from './component/Book.jsx';
 import Book1 from './component/Book1.jsx';
 import Book2 from './component/Book2.jsx';
 import Owner from './component/Owner.jsx';
-import OwnerList from './component/OwnerList.jsx';
+import ManagerList from './component/ManagerList.jsx';
 import Manager from './component/Manager';
-import Addmanager from './component/Addmanager';
+import Addmanager from './component/AddManager.jsx';
 import StaffList from './component/StaffList';
 import AddStaff from './component/AddStaff.jsx';
+import Revenue from './component/Revenue.jsx';
+import Payment from './component/Payment.jsx';
+import ServiceList from './component/ServiceList.jsx';
+import BookingDetails from './component/BookingDetails.jsx';
+import GuestDetails from './component/GuestDetails.jsx';
+import AddManager from './component/AddManager.jsx';
+import BookingList from './component/BookingList.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // import AdminHome from './component/Admin/AdminHome.js'
 
 
@@ -31,6 +41,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+      <ToastContainer />
         <Topbar />
         <Routes>
           <Route exact path='/'  element={<Home />}></Route>
@@ -48,10 +59,17 @@ function App() {
           <Route exact path='/book2' element={<Book2 />}></Route>
           <Route exact path='/manager' element={<Manager />}></Route>
           <Route exact path='/owner' element={<Owner />}></Route>
-          <Route exact path='/ownerlist' element={<OwnerList />}></Route>
+          <Route exact path='/managerList' element={<ManagerList />}></Route>
           <Route exact path='/addmanager' element={<Addmanager />}></Route>
           <Route exact path='/staffList' element={<StaffList />}></Route>
           <Route exact path='/addStaff' element={<AddStaff />}></Route>
+          <Route exact path='/revenue' element={<Revenue />}></Route>
+          <Route exact path='/payment' element={<Payment />}></Route>
+          <Route exact path='/serviceList' element={<ServiceList />}></Route>
+          <Route exact path='/guestDetails' element={<GuestDetails />}></Route>
+          <Route exact path='/bookingDetails' element={<BookingDetails />}></Route>
+          <Route exact path='/addManager' element={<AddManager />}></Route>
+          <Route exact path='/bookingList' element={<BookingList />}></Route>
           {/* <Route exact path='/admin' element={<AdminHome/>}></Route> */}
         </Routes>
         {/* <AdminHome/> */}
