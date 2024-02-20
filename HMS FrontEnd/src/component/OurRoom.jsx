@@ -1,13 +1,36 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect,useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import platinum from "../images/platinum1.jpg";
 import gold from "../images/gold1.jpg";
 import silver from "../images/silver1.jpg";
 
 export default function OurRoom() {
+
+  const [userSession, setUserSession] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    const userSession = sessionStorage.getItem('userinfo');
+    if (userSession) {
+      console.log('User session exists:', userSession);
+      navigate('/book2', { replace: true });
+    } else {
+      navigate('/login', { replace: true });
+      console.log('User session does not exist');
+    }
+  };
+
+
   const platinumRef = useRef(null);
   const goldRef = useRef(null);
   const silverRef = useRef(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('userinfo') !== null);
+
+  useEffect(() => {
+    // Check session storage when the component mounts
+    setIsLoggedIn(sessionStorage.getItem('userinfo') !== null);
+ }, []); 
 
   const handleExploreClick = (ref) => {
     ref.current.scrollIntoView({
@@ -145,7 +168,7 @@ export default function OurRoom() {
                       </div>
                     </div>
                   </div>
-                  <button><Link to="/book1">Book Now</Link></button>
+                  <button onClick={handleButtonClick}>Book Now</button>
                 </div>
               </div>
             </div>
@@ -201,7 +224,7 @@ export default function OurRoom() {
                       </div>
                     </div>
                   </div>
-                  <button><Link to="/book">Book Now</Link></button>
+                  <button onClick={handleButtonClick}>Book Now</button>
                 </div>
               </div>
             </div>
@@ -252,7 +275,7 @@ export default function OurRoom() {
                       </div>
                     </div>
                   </div>
-                  <button><Link to="/book2">Book Now</Link></button>
+                  <button onClick={handleButtonClick}>Book Now</button>
                 </div>
               </div>
             </div>

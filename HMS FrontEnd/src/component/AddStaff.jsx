@@ -7,6 +7,9 @@ import HmsAPIService from "../services/HmsAPIService";
 const base_url = "http://localhost:7070/hms";
 
 const StaffForm = () => {
+  
+
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -20,21 +23,6 @@ const StaffForm = () => {
     managerId: '' // Now storing managerId instead of manager name
   });
 
-  const [managers, setManagers] = useState([]);
-
-  useEffect(() => {
-    fetchManagers();
-  }, []); // Fetch managers only once on component mount
-
-  const fetchManagers = async () => {
-    try {
-      const response = await axios.get(base_url + '/managers');
-      setManagers(response.data); // Assuming response.data is an array of manager objects with properties managerId, firstName, and lastName
-    } catch (error) {
-      console.error('Error fetching managers:', error);
-    }
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -44,6 +32,7 @@ const StaffForm = () => {
     e.preventDefault();
     console.log(formData);
     setFormData({
+      staffId:0,
       firstName: '',
       lastName: '',
       position: '',
@@ -59,8 +48,20 @@ const StaffForm = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Retrieve userinfo from session storage
+    const userinfo = JSON.parse(sessionStorage.getItem('userinfo'));
+    if (userinfo) {
+      // Extract managerId from userinfo and set it as the initial value for formData.managerId
+      setFormData(prevState => ({
+        ...prevState,
+        managerId: userinfo.managerId.toString() // Assuming managerId is a number
+      }));
+    }
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
+
+
   const addData = (event) => {
-    debugger
     event.preventDefault();
     if (formData.firstName === "" || formData.lastName === "" || formData.position === "" || formData.salary
       === "" || formData.dob === "" || formData.phone === "" || formData.email === "" || formData.password === ""
@@ -69,6 +70,7 @@ const StaffForm = () => {
       return;
     }
     let signUpData1 = {
+      staffId:0,
       firstName: formData.firstName, lastName: formData.lastName, position: formData.position,
       salary: formData.salary, dob: formData.dob, phone: formData.phone, email: formData.email,
       password: formData.password, hireDate: formData.hireDate, managerId: formData.managerId
@@ -77,7 +79,7 @@ const StaffForm = () => {
     HmsAPIService.addStaff(signUpData1).then((result) => {
       console.log(result);
       navigate('/staffList', { replace: true });
-      toast.success("SignUP Successful..");
+      toast.success("Staff Added Successful..");
     }).catch((error) => {
       console.log(error);
       toast.error("Error 400/500..");
@@ -186,23 +188,6 @@ const StaffForm = () => {
             onChange={handleChange}
             required
           />
-        </div>
-        <div style={styles.formGroup}>
-          <label htmlFor="managerId">Manager:</label>
-          <select
-            id="managerId"
-            name="managerId"
-            value={formData.managerId}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Manager</option>
-            {managers.map(manager => (
-              <option key={manager.managerId} value={manager.managerId}>
-                {manager.managerId} 
-              </option>
-            ))}
-          </select>
         </div>
         <button type="submit" onClick={addData}>Submit</button>
       </form>

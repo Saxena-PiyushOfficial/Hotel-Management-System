@@ -22,8 +22,8 @@ const Owner = () => {
   return (
     <div style={containerStyle}>
       <br></br><br></br><br></br><br></br><br></br>
-      <button style={buttonStyle}><Link  to="/ownerlist">Manager List</Link></button><br></br><br></br>
-      <button style={buttonStyle}>Show Revenue</button>
+      <button style={buttonStyle}><Link  to="/managerList">Manager List</Link></button><br></br><br></br>
+      <button style={buttonStyle}><Link  to="/revenue">Show Revenue</Link></button>
     </div>
   );
 };
