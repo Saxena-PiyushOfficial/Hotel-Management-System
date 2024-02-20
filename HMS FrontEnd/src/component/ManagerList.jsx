@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/managerList.css'; // Import CSS file for component styling
 
 const ManagerList = () => {
   const [manager, setManager] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/addManager', { replace: true });
+  };
 
   useEffect(() => {
     fetchManager();
@@ -31,8 +39,8 @@ const ManagerList = () => {
         <h1>Manager List</h1>
       </div>
       <div className="adminActions">
-        <button className="button" id= 'asd' style={{ marginRight: '150px', padding: '10px 20px' }}>
-          <Link to="/addManager">Add New</Link>
+        <button className="button" id= 'asd' style={{ marginRight: '150px', padding: '10px 20px' }} onClick={handleButtonClick}>
+         Add New
         </button>
         <input
           type="text"

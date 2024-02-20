@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import banner1 from "../images/banner.jpg";
 import banner2 from "../images/banner2.jpg"
@@ -26,6 +28,28 @@ import lunch from "../images/Lunch.jpg";
 import dinner from "../images/dinner1.jpg";
 
 function Home() {
+
+  const [userSession, setUserSession] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('userinfo') !== null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check session storage when the component mounts
+    setIsLoggedIn(sessionStorage.getItem('userinfo') !== null);
+ }, []); 
+
+ const handleButtonClick = () => {
+  const userSession = sessionStorage.getItem('userinfo');
+  if (userSession) {
+    console.log('User session exists:', userSession);
+    navigate('/room', { replace: true });
+  } else {
+    navigate('/login', { replace: true });
+    console.log('User session does not exist');
+  }
+};
+
   return (
     <div>
       <section className="banner_main"></section>
@@ -111,8 +135,8 @@ function Home() {
                   </div> */}
 
                 <div className="col-md-12">
-                  <button className="book_btn">
-                    <Link to="/login">Book Now</Link>
+                  <button className="book_btn" onClick={handleButtonClick}>
+                    Book Now
                   </button>
                 </div>
                 {/* </div> */}

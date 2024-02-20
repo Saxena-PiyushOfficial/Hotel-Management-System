@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import "../css/style.css";
 import { useNavigate } from 'react-router-dom';
-import { Link } from "react-router-dom";
 import HmsAPIService from "../services/HmsAPIService";
 
 export default function BookingForm() {
@@ -21,11 +20,26 @@ export default function BookingForm() {
   }
 
   const addData = (event) => {
-    debugger
     event.preventDefault();
     if (formData.checkInDate === "" || formData.checkOutDate === "" || formData.docsDescription === "" || formData.noOfGuest
       === "" || formData.roomNumber === "") {
       toast.error("Plase enter valid data..");
+      return;
+    }
+
+    const checkInDate = new Date(formData.checkInDate);
+
+    const currentDate = new Date();
+
+    if (checkInDate <= currentDate) {
+      toast.error("Check-in date must be greater than current date.");
+      return;
+    }
+
+    const checkOutDate = new Date(formData.checkOutDate);
+
+    if (checkInDate >= checkOutDate) {
+      toast.error("Check-out date must be greater than check-in date.");
       return;
     }
 
@@ -50,16 +64,14 @@ export default function BookingForm() {
   }
 
   useEffect(() => {
-    // Retrieve userinfo from session storage
     const userinfo = JSON.parse(sessionStorage.getItem('userinfo'));
     if (userinfo) {
-      // Extract managerId from userinfo and set it as the initial value for formData.managerId
       setFormData(prevState => ({
         ...prevState,
-        guestID: userinfo.guestID.toString() // Assuming managerId is a number
+        guestID: userinfo.guestID.toString()
       }));
     }
-  }, []); // Empty dependency array ensures this effect runs only once on component mount
+  }, []);
 
 
   return (

@@ -49,7 +49,7 @@ function App() {
           <Route exact path='/about' element={<About />}></Route>
           <Route exact path='/gallery' element={<Gallery />}></Route>
           <Route exact path='/blog' element={<Blog />}></Route>
-          <Route exact path='/restaurent' element={<Restaurant />}></Route>
+          <Route exact path='/restaurant' element={<Restaurant />}></Route>
           <Route exact path='/contact' element={<Contact />}></Route>
           <Route exact path='/room' element={<OurRoom />}></Route>
           <Route exact path='/login' element={<SignIn />}></Route>

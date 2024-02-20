@@ -8,9 +8,20 @@ import HmsAPIService from "../services/HmsAPIService";
 
 export default function Signup() {
 
+  const isValidDateOfBirth = (dob) => {
+    const dobDate = new Date(dob);
+    const currentDate = new Date();
+    return dobDate < currentDate;
+  };
+
+  const isValidPhoneNumber = (phoneNumber) => {
+    const phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phoneNumber);
+  };
+
   let [signUpData, setSignUpData] = useState({
     firstName: '', lastName: '', dob: '', address: '', phone: ''
-    , email: '', password: ''
+    , email: '', password: '', confirmPassword: ""
   });
 
   const navigate = useNavigate();
@@ -23,10 +34,24 @@ export default function Signup() {
   const addData = (event) => {
     event.preventDefault();
     if (signUpData.firstName === "" || signUpData.lastName === "" || signUpData.address === "" || signUpData.phone
-      === "" || signUpData.email === "" || signUpData.password === "") {
+      === "" || signUpData.email === "" || signUpData.password === "" || signUpData.confirmPassword === "") {
       toast.error("Plase enter valid data..");
       return;
     }
+    if(signUpData.password !== signUpData.confirmPassword ){
+      toast.error("Password Not Match");
+      return;
+    }
+    if (!isValidPhoneNumber(signUpData.phone)) {
+      toast.error("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
+    if (!isValidDateOfBirth(signUpData.dob)) {
+      toast.error("Please enter a date of birth in the past.");
+      return;
+    }
+
     let signUpData1 = {
       firstName: signUpData.firstName, lastName: signUpData.lastName, dob: signUpData.dob, address: signUpData.address, phone: signUpData.phone
       , email: signUpData.email, password: signUpData.password
@@ -42,7 +67,7 @@ export default function Signup() {
 
     setSignUpData({
       firstName: "", lastName: "", dob: "", address: "", phone: ""
-      , email: "", password: ""
+      , email: "", password: "", confirmPassword: ""
     })
   }
 
@@ -174,7 +199,7 @@ export default function Signup() {
                             type="text"
                             required=""
                             id="reg-phone"
-                            placeholder="Enter Phone Number"
+                            placeholder="Enter 10 digit Phone Number"
                             name="phone"
                             value={signUpData.phone}
                             onChange={changeHandle}
@@ -212,6 +237,10 @@ export default function Signup() {
                             type="password"
                             required=""
                             id="reg-password-confirm"
+                            placeholder="Confirm Password"
+                            name="confirmPassword"
+                            value={signUpData.confirmPassword}
+                            onChange={changeHandle}
                           />
                           <div className="invalid-feedback">
                             Passwords do not match!

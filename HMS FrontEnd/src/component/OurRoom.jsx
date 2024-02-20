@@ -11,15 +11,11 @@ export default function OurRoom() {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    debugger
     const userSession = sessionStorage.getItem('userinfo');
-    // Check if user session exists
     if (userSession) {
-      // User session exists
       console.log('User session exists:', userSession);
       navigate('/book2', { replace: true });
     } else {
-      // User session does not exist
       navigate('/login', { replace: true });
       console.log('User session does not exist');
     }
