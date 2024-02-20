@@ -1,0 +1,73 @@
+/* ManagerList.css */
+
+.adminPage {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .adminHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .adminActions {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .adminActions input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  
+  .managerList {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f7f7f7;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  td {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .row {
+    transition: background-color 0.3s ease;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    background-color: #1f71c3;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
